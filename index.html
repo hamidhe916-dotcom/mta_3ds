@@ -1,342 +1,83 @@
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>به سایت رسمی Mta_3Ds خوش آمدید</title>
-    <!-- لینک‌های لازم برای Model-Viewer -->
-    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-    
-    <!-- استایل‌های سفارشی جذاب‌تر -->
+    <title>کارت محصول نمونه</title>
     <style>
-        /* پالت رنگی: آبی تیره (#0a3d62)، آبی روشن (برای تاکید #1e90ff)، و خاکستری مدرن */
-        :root {
-            --primary-color: #0a3d62;     /* آبی تیره برای برندینگ */
-            --accent-color: #1e90ff;      /* آبی روشن برای دکمه‌ها و هایلایت */
-            --background-light: #f0f4f8;  /* پس‌زمینه روشن‌تر */
-            --card-bg: #ffffff;
-            --text-color: #2c3e50;
-        }
-
         body {
-            font-family: 'Vazirmatn', 'Tahoma', sans-serif; /* فونت فارسی مدرن */
-            background-color: var(--background-light);
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
-        }
-
-        /* استایل هدر و ناوبری */
-        header {
-            background-color: var(--card-bg);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            padding: 15px 40px;
+            font-family: Tahoma, sans-serif;
+            background-color: #f4f4f9;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .logo a {
-            font-size: 28px;
-            font-weight: 900; /* فونت ضخیم‌تر */
-            color: var(--primary-color);
-            text-decoration: none;
-            letter-spacing: 1px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #5a6572;
-            margin-left: 25px;
-            font-size: 15px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        nav a:hover {
-            color: var(--accent-color);
-            transform: translateY(-2px);
-        }
-        
-        /* استایل دکمه‌های ورود و ثبت نام */
-        .user-actions a {
-            padding: 8px 18px;
-            border-radius: 30px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            margin-left: 10px;
-        }
-
-        .user-actions a:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(30, 144, 255, 0.4);
-        }
-
-        #register-btn {
-            background-color: var(--accent-color);
-            color: white !important;
-            border: 2px solid var(--accent-color);
-        }
-
-        #register-btn:hover {
-            background-color: #0077cc; /* آبی کمی تیره‌تر برای هاور */
-            border-color: #0077cc;
-        }
-
-        #login-btn {
-            background-color: transparent;
-            color: var(--primary-color) !important;
-            border: 2px solid var(--primary-color);
-        }
-
-        #login-btn:hover {
-            background-color: var(--primary-color);
-            color: white !important;
-            box-shadow: 0 4px 10px rgba(10, 61, 98, 0.4);
-        }
-
-        /* استایل بخش محتوا */
-        .container {
-            max-width: 1300px;
-            margin: 50px auto;
-            padding: 0 30px;
-        }
-
-        .cards-container {
-            display: flex;
-            gap: 35px;
             justify-content: center;
-            flex-wrap: wrap;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
         }
-
-        .card {
-            background-color: var(--card-bg);
+        .product-card {
+            background-color: #ffffff;
             border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 320px;
             overflow: hidden;
-            flex: 1;
-            min-width: 320px;
-            max-width: 400px;
-            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-            border-top: 3px solid var(--accent-color);
+            transition: transform 0.3s ease-in-out;
         }
-
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+        .product-card:hover {
+            transform: translateY(-5px);
         }
-
-𝐻𝒶𝓂𝒾𝒹, [12/08/1404 11:40 ب.ظ]
-/* استایل عکس ثابت اضافه شده */
         .card-image-top {
             width: 100%;
-            height: 220px; /* افزایش ارتفاع کمی بیشتر */
-            object-fit: cover;
-            border-top-left-radius: 9px;
-            border-top-right-radius: 9px;
+            height: 200px;
+            object-fit: cover; /* تضمین می‌کند تصویر فضای مشخص شده را پر کند */
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
         }
-        
-        /* استایل مدل سه‌بعدی (Model Viewer) */
-        model-viewer {
-            width: 100%;
-            height: 380px; /* افزایش ارتفاع مدل‌ساز */
-            background-color: #e0e7ec;
+        .card-body {
+            padding: 20px;
         }
-
-        .card-content {
-            padding: 25px;
-            text-align: center;
-        }
-
-        .card-content h3 {
-            margin-top: 0;
-            color: var(--primary-color);
-            font-size: 20px;
-        }
-        
-        /* استایل برای بخش‌های پشتیبانی و دانلودها */
-        .section-title {
-            text-align: center;
-            margin: 60px 0 40px 0;
-            font-size: 32px;
-            color: var(--primary-color);
-            font-weight: 700;
-            padding-bottom: 10px;
-            position: relative;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: var(--accent-color);
-            border-radius: 2px;
-        }
-
-        .feature-list {
+        .card-title {
+            font-size: 1.4em;
+            color: #333;
+            margin-bottom: 10px;
             text-align: right;
-            list-style-type: none;
-            padding: 0;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
         }
-
-        .feature-list li {
-            background: #eaf6ff;
-            border-right: 6px solid var(--accent-color);
-            padding: 15px 20px;
-            margin-bottom: 12px;
-            border-radius: 6px;
-            font-size: 17px;
-            color: var(--text-color);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        .card-text {
+            font-size: 0.9em;
+            color: #666;
+            line-height: 1.6;
+            text-align: right;
+        }
+        .price {
+            font-size: 1.3em;
+            color: #e91e63;
+            font-weight: bold;
+            margin-top: 15px;
+            display: block;
+            text-align: right;
         }
     </style>
 </head>
 <body>
 
-    <!-- بخش 1: هدر و منوی ناوبری جذاب -->
-    <header>
-        <div class="logo">
-            <a href="#">Mta_3Dx</a>
-        </div>
-        <nav>
-            <a href="#models">مدل‌ها</a>
-            
-            <!-- حالت: کاربر خارج از سیستم (Logged Out) -->
-            <span id="logged-out-nav">
-                <a href="/register" id="register-btn" style="text-decoration: none;">ثبت نام</a>
-                <a href="/login" id="login-btn">ورود</a>
-            </span>
-
-            <!-- حالت: کاربر وارد سیستم شده (Logged In) - فعلاً برای نمایش است -->
-            <span id="logged-in-nav" style="display:none;">
-                <a href="/dashboard">پنل کاربری</a>
-                <a href="/orders">سفارشات</a>
-                <a href="/downloads">دانلودها</a>
-                <a href="/support">پشتیبانی</a>
-                <a href="/logout" style="color: red; margin-left: 0;">خروج</a>
-            </span>
-        </nav>
-    </header>
-
-    <div class="container">
-
-        <!-- نمایش بخش‌های پنل کاربری به عنوان لینک‌های اصلی -->
-        <h2 class="section-title">امکانات در حال آپدیت هست</h2>
-        <ul class="feature-list">
-            <li><span style="color: var(--accent-color); font-weight: bold;">&bull; پنل کاربری:</span> مدیریت پروفایل، تنظیمات و تاریخچه فعالیت‌ها.</li>
-            <li><span style="color: var(--accent-color); font-weight: bold;">&bull; سفارشات:</span> مشاهده وضعیت لحظه‌ای و تاریخچه خرید.</li>
-            <li><span style="color: var(--accent-color); font-weight: bold;">&bull; دانلودها:</span> دسترسی آسان و امن به محتواهای خریداری شده.</li>
-            <li><span style="color: var(--accent-color); font-weight: bold;">&bull; پشتیبانی پیشرفته:</span> سیستم تیکتینگ اختصاصی برای حل سریع مشکلات.</li>
-        </ul>
-
-
-        <!-- بخش 2: نمایش مدل‌ها با عکس ثابت بالا -->
-        <h2 class="section-title">نمایش محصولات سه‌بعدی</h2>
-
-طراحی شده توسط حمید حیدرزاده
-<div class="cards-container">
-            
-            <!-- کارت اول -->
-            <div class="card">
-                <!-- 1. عکس ثابت (لطفاً src را جایگزین کنید) -->
-                <img src="https://via.placeholder.com/400x220/0a3d62/ffffff?text=Product+Preview+1" 
-                     alt="پیش نمایش محصول اول" 
-                     class="card-image-top">
-                
-                <!-- 2. تگ Model-Viewer -->
-                <model-viewer 
-                    src="models/your_model_1.glb" 
-                    alt="مدل سه‌بعدی محصول اول" 
-                    shadow-intensity="1" 
-                    camera-controls 
-                    auto-rotate
-                    exposure="1.2"> <!-- کمی نور بیشتر برای جلوه بهتر -->
-                </model-viewer>
-
-                <div class="card-content">
-                    <h3>مدل 3بعدی استدیو موسیقی</h3>
-                    <p>طراحی زیبا و شیک</p>
-                </div>
-            </div>
-
-            <!-- کارت دوم -->
-            <div class="card">
-                <!-- 1. عکس ثابت (لطفاً src را جایگزین کنید) -->
-                <img src="https://biaupload.com/do.php?imgf=org-23f228b181151.png/400x220/1e90ff/ffffff?text=Product+Preview+2" 
-                     alt=" پیش نمایش مدل سه بعدی استدیو موسیقی  " 
-                     class="card-image-top">
-                
-                <!-- 2. تگ Model-Viewer -->
-                <model-viewer 
-                    src="models/your_model_2.glb" 
-                    alt="مدل سه‌بعدی  استدیو موسیقی" 
-                    shadow-intensity="1" 
-                    camera-controls 
-                    auto-rotate
-                    exposure="1.2">
-                </model-viewer>
-
-                <div class="card-content">
-                    <h3>مدل استاندارد و بدون باگ B</h3>
-                    <p>بهترین تعادل بین کیفیت و عملکرد در مدل‌های ما.</p>
-                </div>
-            </div>
-
-            <!-- کارت سوم -->
-            <div class="card">
-                <!-- 1. عکس ثابت (لطفاً src را جایگزین کنید) -->
-                <img src="https://via.placeholder.com/400x220/34495e/ffffff?text=Product+Preview+3" 
-                     alt="پیش نمایش مدل 3بعدی خانه مدرن " 
-                     class="card-image-top">
-                
-                <!-- 2. تگ Model-Viewer -->
-                <model-viewer 
-                    src="models/your_model_3.glb" 
-                    alt=" مدل 3 بعدی خانه مدرن  " 
-                    shadow-intensity="1" 
-                    camera-controls 
-                    auto-rotate
-                    exposure="1.2">
-                </model-viewer>
-
-                <div class="card-content">
-                    <h3>مدل حرفه ای و اختصاصی C</h3>
-                    <p>طراحی شده توسط حمید حیدرزاده</p>
-                </div>
-            </div>
-
+    <div class="product-card">
+        <!-- 
+            توجه: مسیر 'src' باید به محل قرارگیری فایل تصویری شما اشاره کند.
+            این مسیر فرض می‌کند که تصویر در کنار این فایل HTML قرار دارد.
+        -->
+        <img 
+            class="card-image-top" 
+            src="image_gen_6571e748-fc08-47c2-a5cf-4a9a05bc17e5_0.png" 
+            alt="تصویر آپلود شده توسط کاربر"
+        >
+        <div class="card-body">
+            <h5 class="card-title">عنوان محصول فرضی</h5>
+            <p class="card-text">
+                این توضیحات نمونه‌ای است که با استفاده از فایل تصویری که آپلود کردید، ساخته شده است.
+                هنگام استفاده در GitHub، حتماً فایل تصویر را نیز به پوشه مناسب اضافه کنید.
+            </p>
+            <span class="price">۴۵۰,۰۰۰ تومان</span>
         </div>
     </div>
 
-    <!-- اسکریپت شبیه‌سازی وضعیت لاگین -->
-    <script>
-        // در حالت استاتیک، فرض می‌کنیم کاربر هنوز وارد نشده است.
-        const isLoggedIn = false; 
-
-        const loggedOutNav = document.getElementById('logged-out-nav');
-        const loggedInNav = document.getElementById('logged-in-nav');
-
-        if (isLoggedIn) {
-            loggedOutNav.style.display = 'none';
-            loggedInNav.style.display = 'inline';
-        } else {
-            loggedOutNav.style.display = 'inline';
-            loggedInNav.style.display = 'none';
-        }
-    </script>
-
 </body>
 </html>
-
-
