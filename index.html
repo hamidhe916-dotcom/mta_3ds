@@ -1,45 +1,40 @@
-
+html_content = """
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> مدل های سه بعدی برای ام تی ایMTA_3DS</title>
+    <title>CYBERZONE - سایت رسمی MTA_3DS</title>
     <style>
-        /* General Setup */
         :root {
-            --bg-color: #121212; /* Dark Background */
-            --primary-color: #0d0d0d; /* Near Black */
-            --accent-color: #00f0ff; /* Neon Cyan/Light Blue */
-            --text-color: #e0e0e0;
-            --secondary-text: #a0a0a0;
-            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --primary-color: #1a1a2e; /* Deep Dark Blue/Black */
+            --accent-color: #00f0ff; /* Bright Cyan/Electric Blue */
+            --secondary-text: #cccccc;
+            --card-bg: #252540;
         }
 
         body {
-            font-family: var(--font-family);
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            font-family: 'Arial', sans-serif;
+            background-color: var(--primary-color);
+            color: var(--secondary-text);
             margin: 0;
             padding: 0;
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Container and Main Layout */
         .container {
-            max-width: 1400px;
+            width: 90%;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
         }
 
-        /* Header & Navigation */
+        /* Header & Navbar */
         .header {
-            background-color: var(--primary-color);
-            border-bottom: 2px solid var(--accent-color);
+            background-color: rgba(26, 26, 46, 0.8);
             padding: 15px 0;
-            box-shadow: 0 4px 15px rgba(0, 240, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 240, 255, 0.1);
         }
 
         .navbar {
@@ -50,100 +45,84 @@
 
         .logo {
             font-size: 1.8em;
-            font-weight: 900;
+            font-weight: bold;
             color: var(--accent-color);
-            text-transform: uppercase;
-            letter-spacing: 3px;
         }
 
         .nav-links a {
-            color: var(--text-color);
+            color: var(--secondary-text);
             text-decoration: none;
-            margin-left: 30px;
-            font-weight: 600;
-            transition: color 0.3s, text-shadow 0.3s;
-            padding: 5px 0;
+            margin-left: 20px;
+            font-size: 1em;
+            transition: color 0.3s;
         }
 
         .nav-links a:hover {
             color: var(--accent-color);
-            text-shadow: 0 0 10px var(--accent-color);
         }
 
         /* Hero Section */
         .hero {
+            background: linear-gradient(rgba(26, 26, 46, 0.85), rgba(26, 26, 46, 0.85)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100 100"><defs><pattern id="gPattern" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M0 0 L10 10 M0 10 L10 0" stroke="%2300f0ff" stroke-width="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23gPattern)" opacity="0.05"/></svg>');
             padding: 100px 0;
             text-align: center;
-            background: linear-gradient(rgba(13, 13, 13, 0.8), rgba(13, 13, 13, 0.8)), url(); /* No image placeholder */
+            border-bottom: 3px solid var(--accent-color);
         }
 
         .hero h1 {
-            font-size: 3.5em;
-            margin-bottom: 15px;
             color: white;
-            text-shadow: 0 0 15px var(--accent-color);
-            letter-spacing: 2px;
+            font-size: 3em;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
         }
 
         .hero p {
-            font-size: 1.3em;
-            color: var(--secondary-text);
-            max-width: 700px;
-            margin: 0 auto 30px;
+            font-size: 1.2em;
+            color: #aaaaaa;
+            margin-bottom: 30px;
         }
 
         .cta-button {
+            display: inline-block;
             background-color: var(--accent-color);
             color: var(--primary-color);
-            padding: 15px 40px;
+            padding: 12px 30px;
             text-decoration: none;
             border-radius: 5px;
             font-weight: bold;
-            text-transform: uppercase;
+            font-size: 1.1em;
             transition: background-color 0.3s, box-shadow 0.3s;
         }
 
         .cta-button:hover {
-            background-color: #00e5cc;
-            box-shadow: 0 0 20px var(--accent-color);
+            background-color: white;
+            box-shadow: 0 0 15px var(--accent-color);
         }
 
-        /* Content Sections */
+        /* Content Section */
         .content-section {
             padding: 60px 0;
         }
 
         .section-title {
-            font-size: 2.5em;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 40px;
-            color: var(--accent-color);
-            position: relative;
-            padding-bottom: 10px;
             text-align: center;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background-color: var(--text-color);
+            font-size: 2.5em;
+            color: white;
+            margin-bottom: 40px;
+            border-bottom: 2px solid rgba(0, 240, 255, 0.2);
+            padding-bottom: 10px;
+            display: inline-block;
+            width: 100%;
         }
 
         .card-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
         }
 
-𝐻𝒶𝓂𝒾𝒹, [13/08/1404 12:08 ق.ظ]
-.game-card {
-            background-color: var(--primary-color);
+        .game-card {
+            background-color: var(--card-bg);
             border: 1px solid rgba(0, 240, 255, 0.2);
             border-radius: 10px;
             padding: 25px;
@@ -154,7 +133,6 @@
             transform: translateY(-5px);
             box-shadow: 0 8px 25px rgba(0, 240, 255, 0.25);
         }
-
         .game-card h3 {
             color: var(--accent-color);
             font-size: 1.5em;
@@ -167,6 +145,7 @@
         .game-card p {
             color: var(--secondary-text);
             font-size: 0.95em;
+            line-height: 1.6;
         }
 
         /* Footer */
@@ -187,11 +166,122 @@
             color: var(--accent-color);
             text-decoration: none;
         }
+        
+        /* MODAL STYLES */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            margin: 10% auto; /* 10% from the top and centered */
+            padding: 30px;
+            border: 2px solid var(--accent-color);
+            width: 90%; /* Could be more or less, depending on screen size */
+            max-width: 400px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 240, 255, 0.5);
+            animation: zoomIn 0.3s;
+        }
+        
+        @keyframes zoomIn {
+            from {transform: scale(0.9);}
+            to {transform: scale(1);}
+        }
+
+        .close-button {
+            color: #aaa;
+            float: left;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .modal-content h2 {
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--accent-color);
+            font-size: 0.9em;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid rgba(0, 240, 255, 0.4);
+            border-radius: 5px;
+            background-color: var(--primary-color);
+            color: white;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus {
+            border-color: var(--accent-color);
+            outline: none;
+        }
+        
+        #success-message {
+            text-align: center;
+            color: #00ffaa;
+            font-size: 1.2em;
+            font-weight: bold;
+            display: none; /* Hidden by default */
+            padding: 20px;
+            border: 2px solid #00ffaa;
+            border-radius: 8px;
+            background-color: rgba(0, 255, 170, 0.1);
+        }
+        
+        #registration-form button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+
+        #registration-form button[type="submit"]:hover {
+            background-color: white;
+        }
 
     </style>
 </head>
 <body>
-
     <header class="header">
         <div class="container">
             <nav class="navbar">
@@ -201,7 +291,7 @@
                     <a href="#">ام تی ای</a>
                     <a href="#">اخبار</a>
                     <a href="#">چنل</a>
-                    <a href="#">ورود</a>
+                    <a href="#" id="open-modal-btn">ورود/ثبت نام</a>
                 </div>
             </nav>
         </div>
@@ -212,7 +302,7 @@
             <div class="container">
                 <h1>خوش آمدید MTA_3DS به چنل رسمی</h1>
                 <p>Welcome To Site Mta_3ds Game-Designer Built for performance.</p>
-                <a href="#" class="cta-button">ثبت نام</a>
+                <a href="#" class="cta-button" id="open-modal-btn-hero">ثبت نام</a>
             </div>
         </section>
 
@@ -223,7 +313,7 @@
                     
                     <div class="game-card">
                         <h3>AutoDesk 3DMax</h3>
-                        <p>  !ساخته میشوندAdobe 3DMax تمام مدل هایی که ساخته میشه با نرم افزار فوق حرفه ای  </p> </p>
+                        <p>  !ساخته میشوندAdobe 3DMax تمام مدل هایی که ساخته میشه با نرم افزار فوق حرفه ای  </p>
                     </div>
                     
                     <div class="game-card">
@@ -255,14 +345,97 @@
             </p>
         </div>
     </footer>
+    
+    <!-- The Modal -->
+    <div id="registrationModal" class="modal">
+      <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2>ثبت نام در CYBERZONE</h2>
+        
+        <div id="success-message">
+            <p>🎉 شما با موفقیت در سایت عضو شدید! 🎉</p>
+        </div>
+
+        <form id="registration-form">
+            <div class="form-group">
+                <label for="username">نام کاربری:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">رمز عبور:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="email">جیمیل:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">شماره تلفن:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <button type="submit">عضویت</button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+        // Get the modal element
+        const modal = document.getElementById("registrationModal");
+
+        // Get the <span> element that closes the modal
+        const span = document.getElementsByClassName("close-button")[0];
+        
+        // Get the success message element
+        const successMessage = document.getElementById("success-message");
+        
+        // Get the form element
+        const form = document.getElementById("registration-form");
+        // Open modal buttons
+        const openBtns = document.querySelectorAll("#open-modal-btn, #open-modal-btn-hero");
+
+        // When the user clicks on the button, open the modal 
+        openBtns.forEach(btn => {
+            btn.onclick = function() {
+                modal.style.display = "block";
+                // Reset form and message when opening
+                form.style.display = "block";
+                successMessage.style.display = "none";
+                form.reset();
+            }
+        });
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Handle form submission
+        form.onsubmit = function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            
+            // --- Simulation of successful registration ---
+            // In a real application, you would send data to a server here.
+            
+            // Hide the form
+            form.style.display = "none";
+            
+            // Show the success message
+            successMessage.style.display = "block";
+            
+            // Optional: Automatically close the modal after a few seconds to show the success message
+            setTimeout(function() {
+                modal.style.display = "none";
+            }, 4000); // Close after 4 seconds
+        }
+
+    </script>
 
 </body>
 </html>
-"""
-
-
-
-
-
-
-
