@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فروشگاه مدل سه‌بعدی MTA</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: "Segoe UI", sans-serif;
+            background-color: #f7f7f7;
+            direction: rtl;
+        }
+
+        header {
+            background-color: #ff0038;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        nav {
+            background-color: #fff;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #ff0038;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .card {
+            width: 280px;
+            background-color: white;
+            border-radius: 10px;
+            margin: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        model-viewer {
+            width: 100%;
+            height: 250px;
+            background-color: #eee;
+        }
+
+        .card-info {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .card-info h3 {
+            margin: 10px 0 5px;
+        }
+
+        .card-info p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #ff0038;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer {
+            background-color: #222;
+            color: #ccc;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    مدل‌های سه‌بعدی برای MTA
+</header>
+
+<nav>
+    <a href="#">صفحه اصلی</a>
+    <a href="#">مدل‌ها</a>
+    <a href="#">درباره ما</a>
+    <a href="#">تماس با ما</a>
+</nav>
+
+<div class="container">
+    <div class="card">
+        <model-viewer src="models/car.glb" alt="مدل ماشین" auto-rotate camera-controls></model-viewer>
+        <div class="card-info">
+            <h3>مدل ماشین اسپرت</h3>
+            <p>مدل مخصوص برای MTA با کیفیت بالا</p>
+            <a class="btn" href="models/car.glb" download>دانلود مدل</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <model-viewer src="models/house.glb" alt="مدل خانه" auto-rotate camera-controls></model-viewer>
+        <div class="card-info">
+            <h3>خانه لوکس</h3>
+            <p>مدل سه‌بعدی برای نقشه‌های شهری</p>
+            <a class="btn" href="models/house.glb" download>دانلود مدل</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <model-viewer src="models/motor.glb" alt="مدل موتور سیکلت" auto-rotate camera-controls></model-viewer>
+        <div class="card-info">
+            <h3>موتورسیکلت اسپرت</h3>
+            <p>مناسب برای سرورهای ریسینگ</p>
+            <a class="btn" href="models/motor.glb" download>دانلود مدل</a>
+        </div>
+    </div>
+</div>
+
+<footer>
+    © تمامی حقوق محفوظ است - طراحی شده برای سرورهای MTA
+</footer>
+
+<!-- اضافه کردن مدل‌ویوئر برای نمایش سه‌بعدی -->
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+</body>
+</html>
