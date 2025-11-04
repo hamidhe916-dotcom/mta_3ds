@@ -396,79 +396,18 @@
       </div>
     </div>
 
-<script>
-  const modal = document.getElementById("registrationModal");
-  const span = document.getElementsByClassName("close-button")[0];
-  const successMessage = document.getElementById("success-message");
-  const form = document.getElementById("registration-form");
-  const openBtns = document.querySelectorAll("#open-modal-btn, #open-modal-btn-hero");
-  const loginBtn = document.querySelector('.open-modal-btn[data-mode="login"]');
-
-  // فرم ورود را ایجاد و به مودال اضافه کن
-  const loginForm = document.createElement("form");
-  loginForm.id = "login-form";
-  loginForm.style.display = "none";
-  loginForm.innerHTML = `
-    <div class="form-group">
-      <label for="login-username">نام کاربری:</label>
-      <input type="text" id="login-username" name="login-username" required>
-    </div>
-    <div class="form-group">
-      <label for="login-password">رمز عبور:</label>
-      <input type="password" id="login-password" name="login-password" required>
-    </div>
-    <button type="submit" style="
-      width: 100%;
-      padding: 12px;
-      background-color: var(--accent-color);
-      color: var(--primary-color);
-      border: none;
-      border-radius: 5px;
-      font-size: 1.1em;
-      cursor: pointer;
-      transition: background-color 0.3s;
-      font-weight: bold;
-    ">ورود</button>
-  `;
-  document.querySelector(".modal-content").appendChild(loginForm);
-
-  // دکمه‌های ثبت‌نام
-  openBtns.forEach(btn => {
-    btn.onclick = function () {
-      modal.style.display = "block";
-      form.style.display = "block";
-      loginForm.style.display = "none";
-      successMessage.style.display = "none";
-      form.reset();
-    };
-  });
-
-  // دکمه ورود
-  loginBtn.onclick = function () {
-    modal.style.display = "block";
-    form.style.display = "none";
-    loginForm.style.display = "block";
-    successMessage.style.display = "none";
-    loginForm.reset();
-  };
-
-  // بستن مودال
-  span.onclick = function () {
-    modal.style.display = "none";
-  };
-
-  window.onclick = function (event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
-  };
-
   // ثبت‌نام
   form.onsubmit = function (event) {
     event.preventDefault();
     form.style.display = "none";
     successMessage.innerHTML = "<p>اطلاعات شما با موفقیت ثبت شد ✅ در حال انتقال...</p>";
     successMessage.style.display = "block";
+
+    // حذف دکمه ثبت‌نام بعد از ثبت موفق
+    const signupBtn = document.getElementById("open-modal-btn-hero");
+    if (signupBtn) {
+      signupBtn.remove();
+    }
 
     setTimeout(function () {
       document.body.style.transition = "opacity 1s ease";
@@ -479,34 +418,6 @@
     }, 1000);
   };
 
-  // ورود
-  loginForm.onsubmit = function (event) {
-    event.preventDefault();
-    loginForm.style.display = "none";
-    successMessage.innerHTML = "<p>ورود موفقیت‌آمیز بود ✅ در حال انتقال...</p>";
-    successMessage.style.display = "block";
-
-    setTimeout(function () {
-      document.body.style.transition = "opacity 1s ease";
-      document.body.style.opacity = "0";
-      setTimeout(function () {
-        window.location.href = "Shop.html"; // ✅ مسیر اصلاح‌شده
-      }, 1000);
-    }, 1000);
-  };
-
-  // پنل سمت راست
-  const sideToggle = document.getElementById("side-toggle");
-  const sidePanel = document.getElementById("side-panel");
-
-  sideToggle.onclick = function () {
-    if (sidePanel.style.right === "0px") {
-      sidePanel.style.right = "-250px";
-    } else {
-      sidePanel.style.right = "0px";
-    }
-  };
-</script>
 
 
 
@@ -518,6 +429,7 @@
 
 </body>
 </html>
+
 
 
 
