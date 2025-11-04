@@ -408,6 +408,7 @@
     const openBtns = document.querySelectorAll("#open-modal-btn, #open-modal-btn-hero");
     const loginBtn = document.querySelector('.open-modal-btn[data-mode="login"]');
 
+    // فرم ورود داینامیک
     const loginForm = document.createElement("form");
     loginForm.id = "login-form";
     loginForm.style.display = "none";
@@ -435,6 +436,7 @@
     `;
     document.querySelector(".modal-content").appendChild(loginForm);
 
+    // باز کردن مودال ثبت‌نام
     openBtns.forEach(btn => {
       btn.onclick = function () {
         modal.style.display = "block";
@@ -445,6 +447,7 @@
       };
     });
 
+    // باز کردن مودال ورود
     loginBtn.onclick = function () {
       modal.style.display = "block";
       form.style.display = "none";
@@ -453,6 +456,7 @@
       loginForm.reset();
     };
 
+    // بستن مودال
     span.onclick = function () {
       modal.style.display = "none";
     };
@@ -463,6 +467,7 @@
       }
     };
 
+    // ثبت‌نام
     form.onsubmit = function (event) {
       event.preventDefault();
       form.style.display = "none";
@@ -483,6 +488,7 @@
       }, 1000);
     };
 
+    // ورود
     loginForm.onsubmit = function (event) {
       event.preventDefault();
       loginForm.style.display = "none";
@@ -504,14 +510,17 @@
     const panelContent = document.getElementById("panel-content");
     const profileBtn = document.getElementById("profile-btn");
     const ordersBtn = document.getElementById("orders-btn");
+    const downloadsBtn = document.getElementById("downloads-btn");
     const exitBtn = document.getElementById("exit-btn");
 
+    // باز و بسته کردن پنل
     if (sideToggle && sidePanel) {
       sideToggle.onclick = function () {
         sidePanel.style.right = sidePanel.style.right === "0px" ? "-250px" : "0px";
       };
     }
 
+    // پروفایل
     if (profileBtn && panelContent) {
       profileBtn.onclick = function (e) {
         e.preventDefault();
@@ -524,6 +533,7 @@
       };
     }
 
+    // سفارشات
     if (ordersBtn && panelContent) {
       ordersBtn.onclick = function (e) {
         e.preventDefault();
@@ -546,15 +556,20 @@
       };
     }
 
+    // دانلودها
+    if (downloadsBtn && panelContent) {
+      downloadsBtn.onclick = function (e) {
+        e.preventDefault();
+        panelContent.innerHTML = "<p>برای دانلود مدل‌ها به بخش خرید مراجعه کنید.</p>";
+      };
+    }
+
+    // خروج
     if (exitBtn) {
       exitBtn.onclick = function (e) {
         e.preventDefault();
-
-        // ریست پنل کاربری
         sidePanel.style.right = "-250px";
         panelContent.innerHTML = "";
-
-        // تلاش برای بستن صفحه
         window.open('', '_self').close();
       };
     }
@@ -576,8 +591,10 @@
 
 
 
+
 </body>
 </html>
+
 
 
 
