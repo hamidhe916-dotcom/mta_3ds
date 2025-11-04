@@ -433,7 +433,7 @@
   // دکمه سبد خرید
   buyBtn.onclick = function (e) {
     e.preventDefault();
-    e.stopPropagation(); // جلوگیری از باز شدن پنل
+    e.stopPropagation();
     modal.style.display = "block";
     form.style.display = "block";
     loginForm.style.display = "none";
@@ -441,15 +441,15 @@
     form.reset();
   };
 
-  // دکمه خرید مدل
+  // دکمه خرید مدل → انتقال مستقیم
   loginBtn.onclick = function (e) {
     e.preventDefault();
-    e.stopPropagation(); // جلوگیری از باز شدن پنل
-    modal.style.display = "block";
-    form.style.display = "none";
-    loginForm.style.display = "block";
-    successMessage.style.display = "none";
-    loginForm.reset();
+    e.stopPropagation();
+    document.body.style.transition = "opacity 1s ease";
+    document.body.style.opacity = "0";
+    setTimeout(function () {
+      window.location.href = "download.html";
+    }, 1000);
   };
 
   // بستن مودال
@@ -468,22 +468,6 @@
     event.preventDefault();
     form.style.display = "none";
     successMessage.innerHTML = "<p>اطلاعات شما با موفقیت ثبت شد ✅ در حال انتقال...</p>";
-    successMessage.style.display = "block";
-
-    setTimeout(function () {
-      document.body.style.transition = "opacity 1s ease";
-      document.body.style.opacity = "0";
-      setTimeout(function () {
-        window.location.href = "download.html";
-      }, 1000);
-    }, 1000);
-  };
-
-  // ورود
-  loginForm.onsubmit = function (event) {
-    event.preventDefault();
-    loginForm.style.display = "none";
-    successMessage.innerHTML = "<p>ورود موفقیت‌آمیز بود ✅ در حال انتقال...</p>";
     successMessage.style.display = "block";
 
     setTimeout(function () {
@@ -547,8 +531,10 @@
 
 
 
+
 </body>
 </html>
+
 
 
 
