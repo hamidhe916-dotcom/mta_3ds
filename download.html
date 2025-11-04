@@ -123,35 +123,46 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <a href="index.html" class="back-btn">⬅️ برگشت به صفحه اصلی</a>
-    <h1>لیست مدل های قابل خرید</h1>
-    <div class="card-grid">
-      <div class="model-card">
-        <img src="https://s6.uupload.ir/files/screenshot_(584)_4cel.png" alt="استدیو موسیقی">
-        <h3>استدیو موسیقی برای MTA</h3>
-        <a href="#" class="buy-btn" target="_blank">🛒افزودن به سبد خرید</a>
-      </div>
-      <div class="model-card">
-        <img src="https://copilot.microsoft.com/th/id/BCO.73532724-2bec-4bce-b8fd-a8ebc92f769d.png" alt="خانه لوکس">
-        <h3>خانه لوکس و مدرن برای MTA</h3>
-        <a href="#" class="buy-btn" target="_blank">🛒افزودن به سبد خرید</a>
-      </div>
-      <div class="model-card">
-        <img src="https://s6.uupload.ir/files/screenshot_(559)_gig7.png" alt="مقبره کوروش">
-        <h3>مقبره کوروش کبیر برای MTA</h3>
-        <a href="#" class="buy-btn" target="_blank">🛒افزودن به سبد خرید</a>
-      </div>
-      <div class="model-card">
-        <img src="https://s6.uupload.ir/files/screenshot_(564)_5jk4.png" alt="اداره پلیس">
-        <h3>دفتر اداره پلیس برای MTA</h3>
-        <a href="#" class="buy-btn" target="_blank">🛒افزودن به سبد خرید </a>
-      </div>
+<div class="container">
+  <a href="index.html" class="back-btn">⬅️ برگشت به صفحه اصلی</a>
+  <h1>لیست مدل های قابل خرید</h1>
+  <div class="card-grid">
+    <div class="model-card">
+      <img src="https://s6.uupload.ir/files/screenshot_(584)_4cel.png" alt="استدیو موسیقی">
+      <h3>استدیو موسیقی برای MTA</h3>
+      <a href="#" class="buy-btn" target="_blank">🛒افزودن به سبد خرید</a>
+    </div>
+    <div class="model-card">
+      <img src="https://copilot.microsoft.com/th/id/BCO.73532724-2bec-4bce-b8fd-a8ebc92f769d.png" alt="خانه لوکس">
+      <h3>خانه لوکس و مدرن برای MTA</h3>
+      <a href="#" class="buy-btn" target="_blank">🛒افزودن به سبد خرید</a>
+    </div>
+    <div class="model-card">
+      <img src="https://s6.uupload.ir/files/screenshot_(559)_gig7.png" alt="مقبره کوروش">
+      <h3>مقبره کوروش کبیر برای MTA</h3>
+      <a href="#" class="buy-btn" target="_blank">🛒افزودن به سبد خرید</a>
+    </div>
+    <div class="model-card">
+      <img src="https://s6.uupload.ir/files/screenshot_(564)_5jk4.png" alt="اداره پلیس">
+      <h3>دفتر اداره پلیس برای MTA</h3>
+      <a href="#" class="buy-btn" target="_blank">🛒افزودن به سبد خرید</a>
     </div>
   </div>
+</div>
 
-  <!-- ✅ پیام سبد خرید -->
-  <div id="cart-message">سفارش شما به سبد خرید اضافه شد ✅</div>
+<!-- ✅ پیام موفقیت -->
+<div id="cart-message" style="display: none; position: fixed; bottom: 30px; right: 30px; background-color: #00ffaa; color: #1a1a2e; padding: 15px 25px; border-radius: 8px; font-weight: bold; font-size: 1.1em; box-shadow: 0 0 15px rgba(0,255,170,0.4); z-index: 9999; transition: opacity 0.5s ease;">
+  سفارش شما به سبد خرید اضافه شد ✅
+</div>
+
+<!-- ✅ پنل سبد خرید -->
+<div id="cart-panel" style="display: none; position: fixed; bottom: 0; right: 0; width: 100%; background-color: var(--card-bg); border-top: 2px solid var(--accent-color); padding: 20px; box-shadow: 0 -5px 15px rgba(0,0,0,0.4); z-index: 9998;">
+  <h2 style="color: var(--accent-color); text-align: center; margin-bottom: 20px;">سبد خرید</h2>
+  <div style="display: flex; justify-content: center; gap: 20px;">
+    <a href="#" style="background-color: var(--accent-color); color: var(--primary-color); padding: 12px 25px; border-radius: 6px; font-weight: bold; text-decoration: none;">لیست خریدها</a>
+    <a href="#" style="background-color: var(--accent-color); color: var(--primary-color); padding: 12px 25px; border-radius: 6px; font-weight: bold; text-decoration: none;">تسویه حساب</a>
+  </div>
+</div>
 
 <script>
   const backBtn = document.querySelector(".back-btn");
@@ -188,7 +199,29 @@
       cartPanel.style.display = "block";
     });
   });
+
+  // ✅ عملکرد دکمه تسویه حساب با پیام وسط صفحه
+  const checkoutBtn = document.querySelector('#cart-panel a:last-child');
+  const centerMessage = document.getElementById("center-message");
+
+  checkoutBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+
+    centerMessage.style.display = "block";
+    centerMessage.style.opacity = "1";
+
+    setTimeout(() => {
+      centerMessage.style.opacity = "0";
+      document.body.style.transition = "opacity 1s ease";
+      document.body.style.opacity = "0";
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 1000);
+    }, 3000);
+  });
 </script>
+
+
 
 </body>
 </html>
