@@ -1,443 +1,258 @@
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MTA_3DS ll طراح مدل سه بعدی ام تی ای</title>
-    <style>
-        :root {
-            --primary-color: #1a1a2e; /* کد رنگ سیاه */
-            --accent-color: #ffc403; /* Bright Cyan/Electric Blue */
-            --secondary-text: #cccccc;
-            --card-bg: #252540;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: var(--primary-color);
-            color: var(--secondary-text);
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        /* Header & Navbar */
-        .header {
-            background-color: rgba(26, 26, 46, 0.8);
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 240, 255, 0.1);
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.8em;
-            font-weight: bold;
-            color: var(--accent-color);
-        }
-
-        .nav-links a {
-            color: var(--secondary-text);
-            text-decoration: none;
-            margin-left: 20px;
-            font-size: 1em;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent-color);
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(26, 26, 46, 0.85), rgba(26, 26, 46, 0.85)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100 100"><defs><pattern id="gPattern" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M0 0 L10 10 M0 10 L10 0" stroke="%2300f0ff" stroke-width="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23gPattern)" opacity="0.05"/></svg>');
-            padding: 100px 0;
-            text-align: center;
-            border-bottom: 3px solid var(--accent-color);
-        }
-
-        .hero h1 {
-            color: white;
-            font-size: 3em;
-            margin-bottom: 15px;
-            text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
-        }
-
-        .hero p {
-            font-size: 1.2em;
-            color: #aaaaaa;
-            margin-bottom: 30px;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background-color: var(--accent-color);
-            color: var(--primary-color);
-            padding: 12px 30px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            font-size: 1.1em;
-            transition: background-color 0.3s, box-shadow 0.3s;
-        }
-
-        .cta-button:hover {
-            background-color: white;
-            box-shadow: 0 0 15px var(--accent-color);
-        }
-
-        /* Content Section */
-        .content-section {
-            padding: 60px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5em;
-            color: white;
-            margin-bottom: 40px;
-            border-bottom: 2px solid rgba(0, 240, 255, 0.2);
-            padding-bottom: 10px;
-            display: inline-block;
-            width: 100%;
-        }
-
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .game-card {
-            background-color: var(--card-bg);
-            border: 1px solid rgba(0, 240, 255, 0.2);
-            border-radius: 10px;
-            padding: 25px;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .game-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 240, 255, 0.25);
-        }
-        .game-card h3 {
-            color: var(--accent-color);
-            font-size: 1.5em;
-            margin-top: 0;
-            border-bottom: 1px dashed rgba(224, 224, 224, 0.1);
-            padding-bottom: 10px;
-            margin-bottom: 15px;
-        }
-
-        .game-card p {
-            color: var(--secondary-text);
-            font-size: 0.95em;
-            line-height: 1.6;
-        }
-
-        /* Footer */
-        .footer {
-            background-color: var(--primary-color);
-            border-top: 2px solid var(--accent-color);
-            padding: 30px 0;
-            text-align: center;
-            margin-top: 50px;
-        }
-
-        .footer p {
-            margin: 5px 0;
-            font-size: 0.85em;
-        }
-
-        .footer a {
-            color: var(--accent-color);
-            text-decoration: none;
-        }
-        
-        /* MODAL STYLES */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed;
-            z-index: 10000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
-            animation: fadeIn 0.3s;
-        }
-
-        @keyframes fadeIn {
-            from {opacity: 0;}
-            to {opacity: 1;}
-        }
-
-        .modal-content {
-            background-color: var(--card-bg);
-            margin: 10% auto; /* 10% from the top and centered */
-            padding: 30px;
-            border: 2px solid var(--accent-color);
-            width: 90%; /* Could be more or less, depending on screen size */
-            max-width: 400px;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0, 240, 255, 0.5);
-            animation: zoomIn 0.3s;
-        }
-        
-        @keyframes zoomIn {
-            from {transform: scale(0.9);}
-            to {transform: scale(1);}
-        }
-
-        .close-button {
-            color: #aaa;
-            float: left;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-            line-height: 1;
-        }
-
-        .close-button:hover,
-        .close-button:focus {
-            color: var(--accent-color);
-            text-decoration: none;
-        }
-
-        .modal-content h2 {
-            color: white;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: var(--accent-color);
-            font-size: 0.9em;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid rgba(0, 240, 255, 0.4);
-            border-radius: 5px;
-            background-color: var(--primary-color);
-            color: white;
-            box-sizing: border-box;
-        }
-
-        .form-group input:focus {
-            border-color: var(--accent-color);
-            outline: none;
-        }
-        
-        #success-message {
-            text-align: center;
-            color: #00ffaa;
-            font-size: 1.2em;
-            font-weight: bold;
-            display: none; /* Hidden by default */
-            padding: 20px;
-            border: 2px solid #00ffaa;
-            border-radius: 8px;
-            background-color: rgba(0, 255, 170, 0.1);
-        }
-        
-        #registration-form button[type="submit"] {
-            width: 100%;
-            padding: 12px;
-            background-color: var(--accent-color);
-            color: var(--primary-color);
-            border: none;
-            border-radius: 5px;
-            font-size: 1.1em;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            font-weight: bold;
-        }
-
-        #registration-form button[type="submit"]:hover {
-            background-color: white;
-        }
-
-    </style>
-</head>
-<body>
-        <header class="header">
-        <div class="container">
-            <nav class="navbar">
-                
- <div class="logo">MTA_<span style="color: white;">3Ds</span></div>
-        <div class="nav-links">
-  <a href="#" class="cta-button">صفحه نخست</a>
-  <a href="#" class="cta-button">ام تی ای</a>
-  <a href="#" class="cta-button">درباره ما</a>
-  <a href="#" class="cta-button">تلگرام</a>
-  <a href="#" class="cta-button open-modal-btn" data-mode="login">ورود</a>
-</div>
-
-                </div>
-            </nav>
-        </div>
-    </header>
-
-    <main>
-        <section class="hero">
-            <div class="container">
-                <h1> به سایت رسمی MTA_3DS خوش آمدید    </h1>
-                <p>Welcome To Site Mta_3ds Game-Designer.</p>
-                <div style="margin-top: 30px;"></div>
-                <a href="#" class="cta-button" id="open-modal-btn-hero">ثبت نام</a>
-                <a href="#" class="cta-button" id="open-modal-btn">ورود</a>
-            </div>
-        </section>
-
-        <section class="content-section">
-            <div class="container">
-                <h2 class="section-title">درباره ما</h2>
-                <div class="card-grid">
-                    
-                    <div class="game-card">
-                        <h3>AutoDesk 3DMax</h3>
-                        <p> تمامی مدل ها با نرم افزار Adobe 3DMax نیز ساخته میشوند  </p>
-                    </div>
-                    
-                    <div class="game-card">
-                        <h3>بهینه  مدل</h3>
-                        <p> تیم MTA_3DS مدل را در چندین مرحله تست و بهینه سازی نیز میکند </p>
-                    </div>
-                    
-                    <div class="game-card">
-                        <h3> درباره Mta_3ds</h3>
-                        <p>  MTA_3DS از ساال 1403 فعالیت خود را آغاز کرده و خداروشکر توانسته با سرور های بزرگ ام تی ای قرارداد ببندد </p>
-                    </div>
-                    
-                    <div class="game-card">
-                        <h3>پشتیبانی 24 ساعته</h3>
-                        <p>تیم پشتیبانی ما 24 ساعته در خدمت شما عزیزان میباشد</p>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 سایت توسط حمید حیدرزاده طراحی شده وحقوق برای این سایت محفوظ است.</p>
-            <p>
-                <a href="#">MTA_3DS</a> | 
-                <a href="#">Game-Designer</a>
-            </p>
-        </div>
-    </footer>
-    
-    <!-- The Modal -->
-    <div id="registrationModal" class="modal">
-      <div class="modal-content">
-        <span class="close-button">&times;</span>
-        <h2>چهت ثبت نام در سایت تمامی کادر های زیر پر کنید</h2>
-        
-        <div id="success-message">
-            <p>اطلاعات شما با ثبت شد در حال انتقال به صفحه مدل ها✅</p>
-        </div>
-
-        <form id="registration-form">
-            <div class="form-group">
-                <label for="username">نام کربری حداقل 4 کاراکتر:</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div class="form-group">
-                <label for="password">رمز عبور حداقل 8 کاراکتر:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <div class="form-group">
-                <label for="email">جیمیل:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="phone">شماره تلفن:</label>
-                <input type="tel" id="phone" name="phone" required>
-            </div>
-            <button type="submit">ثبت اطلاعات</button>
-        </form>
-      </div>
-    </div>
-
-<script>
-    const modal = document.getElementById("registrationModal");
-    const span = document.getElementsByClassName("close-button")[0];
-    const successMessage = document.getElementById("success-message");
-    const form = document.getElementById("registration-form");
-    const openBtns = document.querySelectorAll("#open-modal-btn, #open-modal-btn-hero");
-
-    openBtns.forEach(btn => {
-        btn.onclick = function() {
-            modal.style.display = "block";
-            form.style.display = "block";
-            successMessage.style.display = "none";
-            form.reset();
-        }
-    });
-
-    span.onclick = function() {
-        modal.style.display = "none";
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MTA_3DS ll طراح مدل سه بعدی ام تی ای</title>
+  <style>
+    :root {
+      --primary-color: #1a1a2e;
+      --accent-color: #ffc403;
+      --secondary-text: #cccccc;
+      --card-bg: #252540;
     }
 
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: var(--primary-color);
+      color: var(--secondary-text);
+      margin: 0;
+      padding: 0;
     }
 
-    form.onsubmit = function(event) {
-        event.preventDefault();
-
-        form.style.display = "none";
-        successMessage.style.display = "block";
-
-        setTimeout(function() {
-            document.body.style.transition = "opacity 1s ease";
-            document.body.style.opacity = "0";
-
-            setTimeout(function() {
-                window.location.href = "download.html";
-            }, 1000);
-        }, 1000);
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
     }
-</script>
 
+    .header {
+      background-color: rgba(26, 26, 46, 0.8);
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 240, 255, 0.1);
+    }
 
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
+    .logo {
+      font-size: 1.8em;
+      font-weight: bold;
+      color: var(--accent-color);
+    }
 
-</body>
-</html>
+    .nav-links a {
+      color: #000;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 1em;
+      transition: color 0.3s;
+    }
 
+    .nav-links a:hover {
+      color: var(--accent-color);
+    }
 
+    .hero {
+      background: linear-gradient(rgba(26, 26, 46, 0.85), rgba(26, 26, 46, 0.85)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100 100"><defs><pattern id="gPattern" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M0 0 L10 10 M0 10 L10 0" stroke="%2300f0ff" stroke-width="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23gPattern)" opacity="0.05"/></svg>');
+      padding: 100px 0;
+      text-align: center;
+      border-bottom: 3px solid var(--accent-color);
+    }
 
+    .hero h1 {
+      color: white;
+      font-size: 3em;
+      margin-bottom: 15px;
+      text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+    }
 
+    .hero p {
+      font-size: 1.2em;
+      color: #aaaaaa;
+      margin-bottom: 30px;
+    }
 
+    .cta-button {
+      display: inline-block;
+      background-color: var(--accent-color);
+      color: var(--primary-color);
+      padding: 12px 30px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 1.1em;
+      transition: background-color 0.3s, box-shadow 0.3s;
+      margin: 0 10px;
+    }
 
+    .cta-button:hover {
+      background-color: white;
+      box-shadow: 0 0 15px var(--accent-color);
+    }
 
+    .content-section {
+      padding: 60px 0;
+    }
 
+    .section-title {
+      text-align: center;
+      font-size: 2.5em;
+      color: white;
+      margin-bottom: 40px;
+      border-bottom: 2px solid rgba(0, 240, 255, 0.2);
+      padding-bottom: 10px;
+      display: inline-block;
+      width: 100%;
+    }
 
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
 
+    .game-card {
+      background-color: var(--card-bg);
+      border: 1px solid rgba(0, 240, 255, 0.2);
+      border-radius: 10px;
+      padding: 25px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .game-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 240, 255, 0.25);
+    }
+
+    .game-card h3 {
+      color: var(--accent-color);
+      font-size: 1.5em;
+      margin-top: 0;
+      border-bottom: 1px dashed rgba(224, 224, 224, 0.1);
+      padding-bottom: 10px;
+      margin-bottom: 15px;
+    }
+
+    .game-card p {
+      color: var(--secondary-text);
+      font-size: 0.95em;
+      line-height: 1.6;
+    }
+
+    .footer {
+      background-color: var(--primary-color);
+      border-top: 2px solid var(--accent-color);
+      padding: 30px 0;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .footer p {
+      margin: 5px 0;
+      font-size: 0.85em;
+    }
+
+    .footer a {
+      color: var(--accent-color);
+      text-decoration: none;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.8);
+      animation: fadeIn 0.3s;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    .modal-content {
+      background-color: var(--card-bg);
+      margin: 10% auto;
+      padding: 30px;
+      border: 2px solid var(--accent-color);
+      width: 90%;
+      max-width: 400px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 240, 255, 0.5);
+      animation: zoomIn 0.3s;
+    }
+
+    @keyframes zoomIn {
+      from {transform: scale(0.9);}
+      to {transform: scale(1);}
+    }
+
+    .close-button {
+      color: #aaa;
+      float: left;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .close-button:hover,
+    .close-button:focus {
+      color: var(--accent-color);
+      text-decoration: none;
+    }
+
+    .modal-content h2 {
+      color: white;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--accent-color);
+      font-size: 0.9em;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid rgba(0, 240, 255, 0.4);
+      border-radius: 5px;
+      background-color: var(--primary-color);
+      color: white;
+      box-sizing: border-box;
+    }
+
+    .form-group input:focus {
+      border-color: var(--accent-color);
+      outline: none;
+    }
+
+    #success-message {
+      text-align: center;
+      color: #00ffaa;
+      font-size: 1.2em;
+      font-weight: bold;
+      display: none;
+      padding: 20px;
+      border: 2px solid #00ffaa;
+      border-radius: 8px;
+      background-color
