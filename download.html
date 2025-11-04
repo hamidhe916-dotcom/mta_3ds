@@ -153,59 +153,73 @@
 </div>
 
 <script>
-  const backBtn = document.querySelector(".back-btn");
-  backBtn.addEventListener("click", function(e) {
-    e.preventDefault();
-    document.body.style.transition = "opacity 1s ease";
-    document.body.style.opacity = "0";
-    setTimeout(function() {
-      window.location.href = "Shop.html";
-    }, 1000);
-  });
+  window.onload = function () {
+    const backBtn = document.querySelector(".back-btn");
+    const buyButtons = document.querySelectorAll(".buy-btn");
+    const cartMessage = document.getElementById("cart-message");
 
-  // ✅ افزودن به سبد خرید و ذخیره مدل در localStorage
-  const buyButtons = document.querySelectorAll(".buy-btn");
-  const cartMessage = document.getElementById("cart-message");
+    // دکمه برگشت → انتقال به Shop.html با افکت
+    if (backBtn) {
+      backBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        document.body.style.transition = "opacity 1s ease";
+        document.body.style.opacity = "0";
+        setTimeout(function () {
+          window.location.href = "Shop.html";
+        }, 1000);
+      });
+    }
 
-  buyButtons.forEach(btn => {
-    btn.addEventListener("click", function(e) {
-      e.preventDefault();
+    // افزودن به سبد خرید و ذخیره مدل در localStorage
+    if (buyButtons && cartMessage) {
+      buyButtons.forEach(btn => {
+        btn.addEventListener("click", function (e) {
+          e.preventDefault();
 
-      // گرفتن اطلاعات مدل
-      const card = btn.closest(".model-card");
-      const imgSrc = card.querySelector("img").src;
-      const title = card.querySelector("h3").innerText;
+          const card = btn.closest(".model-card");
+          if (!card) return;
 
-      // ذخیره در localStorage
-      const cartItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
-      cartItems.push({ title, imgSrc });
-      localStorage.setItem("cartItems", JSON.stringify(cartItems));
+          const img = card.querySelector("img");
+          const titleEl = card.querySelector("h3");
 
-      // نمایش پیام موفقیت
-      cartMessage.style.display = "block";
-      cartMessage.style.opacity = "1";
+          if (!img || !titleEl) return;
 
-      setTimeout(() => {
-        cartMessage.style.opacity = "0";
-        setTimeout(() => {
-          cartMessage.style.display = "none";
+          const imgSrc = img.src;
+          const title = titleEl.innerText;
 
-          // انتقال به صفحه Shop.html
-          document.body.style.transition = "opacity 1s ease";
-          document.body.style.opacity = "0";
+          const cartItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
+          cartItems.push({ title, imgSrc });
+          localStorage.setItem("cartItems", JSON.stringify(cartItems));
+
+          // نمایش پیام موفقیت
+          cartMessage.style.display = "block";
+          cartMessage.style.opacity = "1";
+
           setTimeout(() => {
-            window.location.href = "Shop.html";
-          }, 1000);
-        }, 500);
-      }, 2000);
-    });
-  });
+            cartMessage.style.opacity = "0";
+            setTimeout(() => {
+              cartMessage.style.display = "none";
+
+              // انتقال به صفحه Shop.html
+              document.body.style.transition = "opacity 1s ease";
+              document.body.style.opacity = "0";
+              setTimeout(() => {
+                window.location.href = "Shop.html";
+              }, 1000);
+            }, 500);
+          }, 2000);
+        });
+      });
+    }
+  };
 </script>
+
 
 
 
 </body>
 </html>
+
 
 
 
