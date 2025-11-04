@@ -433,7 +433,8 @@
   document.querySelector(".modal-content").appendChild(loginForm);
 
   // دکمه سبد خرید
-  buyBtn.onclick = function () {
+  buyBtn.onclick = function (e) {
+    e.preventDefault();
     modal.style.display = "block";
     form.style.display = "block";
     loginForm.style.display = "none";
@@ -442,7 +443,8 @@
   };
 
   // دکمه خرید مدل
-  loginBtn.onclick = function () {
+  loginBtn.onclick = function (e) {
+    e.preventDefault();
     modal.style.display = "block";
     form.style.display = "none";
     loginForm.style.display = "block";
@@ -529,8 +531,10 @@
 
 
 
+
 </body>
 </html>
+
 
 
 
