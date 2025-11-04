@@ -103,6 +103,23 @@
     .back-btn:hover {
       background-color: white;
     }
+
+    /* ✅ پیام سبد خرید */
+    #cart-message {
+      display: none;
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: #00ffaa;
+      color: #1a1a2e;
+      padding: 15px 25px;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 1.1em;
+      box-shadow: 0 0 15px rgba(0,255,170,0.4);
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
   </style>
 </head>
 <body>
@@ -133,6 +150,9 @@
     </div>
   </div>
 
+  <!-- ✅ پیام سبد خرید -->
+  <div id="cart-message">سفارش شما به سبد خرید اضافه شد ✅</div>
+
   <script>
     const backBtn = document.querySelector(".back-btn");
     backBtn.addEventListener("click", function(e) {
@@ -142,6 +162,25 @@
       setTimeout(function() {
         window.location.href = "index.html";
       }, 1000);
+    });
+
+    // ✅ اسکریپت نمایش پیام سبد خرید
+    const buyButtons = document.querySelectorAll(".buy-btn");
+    const cartMessage = document.getElementById("cart-message");
+
+    buyButtons.forEach(btn => {
+      btn.addEventListener("click", function(e) {
+        e.preventDefault();
+        cartMessage.style.display = "block";
+        cartMessage.style.opacity = "1";
+
+        setTimeout(() => {
+          cartMessage.style.opacity = "0";
+          setTimeout(() => {
+            cartMessage.style.display = "none";
+          }, 500);
+        }, 2000);
+      });
     });
   </script>
 </body>
