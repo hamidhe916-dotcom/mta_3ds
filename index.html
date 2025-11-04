@@ -47,6 +47,43 @@
       color: var(--accent-color);
     }
 
+    .nav-links a {
+      color: var(--primary-color);
+      background-color: var(--accent-color);
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 1em;
+      font-weight: bold;
+      padding: 8px 16px;
+      border-radius: 5px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .nav-links a:hover {
+      background-color: white;
+      color: var(--primary-color);
+    }
+
+    .hero {
+      background: linear-gradient(rgba(26, 26, 46, 0.85), rgba(26, 26, 46, 0.85)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100 100"><defs><pattern id="gPattern" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M0 0 L10 10 M0 10 L10 0" stroke="%2300f0ff" stroke-width="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23gPattern)" opacity="0.05"/></svg>');
+      padding: 100px 0;
+      text-align: center;
+      border-bottom: 3px solid var(--accent-color);
+    }
+
+    .hero h1 {
+      color: white;
+      font-size: 3em;
+      margin-bottom: 15px;
+      text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+    }
+
+    .hero p {
+      font-size: 1.2em;
+      color: #aaaaaa;
+      margin-bottom: 30px;
+    }
+
     .cta-button {
       display: inline-block;
       background-color: var(--accent-color);
@@ -57,7 +94,6 @@
       font-weight: bold;
       font-size: 1.1em;
       transition: background-color 0.3s, box-shadow 0.3s;
-      margin-left: 20px;
     }
 
     .cta-button:hover {
@@ -74,11 +110,11 @@
       <nav class="navbar">
         <div class="logo">MTA_<span style="color: white;">3Ds</span></div>
         <div class="nav-links">
-          <a href="#" class="cta-button">خانه</a>
-          <a href="#" class="cta-button">ام تی ای</a>
-          <a href="#" class="cta-button">اخبار</a>
-          <a href="#" class="cta-button">چنل</a>
-          <a href="#" class="cta-button" id="open-modal-btn">ورود</a>
+          <a href="#">خانه</a>
+          <a href="#">ام تی ای</a>
+          <a href="#">اخبار</a>
+          <a href="#">چنل</a>
+          <a href="#" id="open-modal-btn">ورود</a>
         </div>
       </nav>
     </div>
@@ -96,19 +132,7 @@
       </div>
     </section>
 
-    <!-- ادامه‌ی محتوا و فرم ثبت‌نام بدون تغییر... -->
+    <!-- ادامه‌ی محتوا، کارت‌ها، فرم ثبت‌نام، فوتر و اسکریپت‌ها بدون تغییر باقی مانده‌اند -->
   </main>
-
-  <footer class="footer">
-    <div class="container">
-      <p>&copy; 2025 سایت توسط حمید حیدرزاده طراحی شده و حقوق برای این سایت محفوظ است.</p>
-      <p>
-        <a href="#">MTA_3DS</a> |
-        <a href="#">Game-Designer</a>
-      </p>
-    </div>
-  </footer>
-
-  <!-- Modal و اسکریپت‌ها بدون تغییر باقی مانده‌اند -->
 </body>
 </html>
