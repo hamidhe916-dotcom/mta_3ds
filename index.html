@@ -1,4 +1,4 @@
-html_content = """
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -379,18 +379,48 @@ html_content = """
     </div>
 
 <script>
-  const backBtn = document.querySelector(".back-btn");
+    const modal = document.getElementById("registrationModal");
+    const span = document.getElementsByClassName("close-button")[0];
+    const successMessage = document.getElementById("success-message");
+    const form = document.getElementById("registration-form");
+    const openBtns = document.querySelectorAll("#open-modal-btn, #open-modal-btn-hero");
 
-  backBtn.addEventListener("click", function(e) {
-    e.preventDefault();
-    document.body.style.transition = "opacity 1s ease";
-    document.body.style.opacity = "0";
+    openBtns.forEach(btn => {
+        btn.onclick = function() {
+            modal.style.display = "block";
+            form.style.display = "block";
+            successMessage.style.display = "none";
+            form.reset();
+        }
+    });
 
-    setTimeout(function() {
-      window.location.href = "MTA.html";
-    }, 1000);
-  });
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    form.onsubmit = function(event) {
+        event.preventDefault();
+
+        form.style.display = "none";
+        successMessage.style.display = "block";
+
+        setTimeout(function() {
+            document.body.style.transition = "opacity 1s ease";
+            document.body.style.opacity = "0";
+
+            setTimeout(function() {
+                window.location.href = "download.html";
+            }, 1000);
+        }, 4000);
+    }
 </script>
+
 
 
 
