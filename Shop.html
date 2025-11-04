@@ -363,7 +363,37 @@
             </p>
         </div>
     </footer>
+    <!-- The Modal -->
+    <div id="registrationModal" class="modal">
+      <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2>کادر های زیر پر کنید!</h2>
+        
+        <div id="success-message">
+            <p>اطلاعات شما با ثبت شد در حال انتقال به صفحه مدل ها✅</p>
+        </div>
 
+        <form id="registration-form">
+            <div class="form-group">
+                <label for="username">نام کربری حداقل 4 کاراکتر:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">رمز عبور حداقل 8 کاراکتر:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="email">جیمیل:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">شماره تلفن:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <button type="submit">ثبت اطلاعات</button>
+        </form>
+      </div>
+    </div>
 <script>
   const modal = document.getElementById("registrationModal");
   const span = document.getElementsByClassName("close-button")[0];
@@ -519,6 +549,7 @@
 
 </body>
 </html>
+
 
 
 
