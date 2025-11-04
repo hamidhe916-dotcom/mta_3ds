@@ -133,16 +133,46 @@
     </div>
   </div>
 
-  <script>
-    const backBtn = document.querySelector(".back-btn");
-    backBtn.addEventListener("click", function(e) {
+<script>
+  const backBtn = document.querySelector(".back-btn");
+  backBtn.addEventListener("click", function(e) {
+    e.preventDefault();
+    document.body.style.transition = "opacity 1s ease";
+    document.body.style.opacity = "0";
+    setTimeout(function() {
+      window.location.href = "Shop.html";
+    }, 1000);
+  });
+
+  // ✅ افزودن به سبد خرید و انتقال
+  const buyButtons = document.querySelectorAll(".buy-btn");
+  const cartMessage = document.getElementById("cart-message");
+
+  buyButtons.forEach(btn => {
+    btn.addEventListener("click", function(e) {
       e.preventDefault();
-      document.body.style.transition = "opacity 1s ease";
-      document.body.style.opacity = "0";
-      setTimeout(function() {
-        window.location.href = "index.html";
-      }, 1000);
+
+      // نمایش پیام موفقیت
+      cartMessage.style.display = "block";
+      cartMessage.style.opacity = "1";
+
+      setTimeout(() => {
+        cartMessage.style.opacity = "0";
+        setTimeout(() => {
+          cartMessage.style.display = "none";
+
+          // انتقال به صفحه Shop.html
+          document.body.style.transition = "opacity 1s ease";
+          document.body.style.opacity = "0";
+          setTimeout(() => {
+            window.location.href = "Shop.html";
+          }, 1000);
+        }, 500);
+      }, 2000);
     });
-  </script>
+  });
+</script>
+
 </body>
 </html>
+
