@@ -401,8 +401,7 @@
   const span = document.getElementsByClassName("close-button")[0];
   const successMessage = document.getElementById("success-message");
   const form = document.getElementById("registration-form");
-  const openBtns = document.querySelectorAll("#open-modal-btn");
-  const signupBtn = document.getElementById("open-modal-btn-hero");
+  const openBtns = document.querySelectorAll("#open-modal-btn, #open-modal-btn-hero");
   const loginBtn = document.querySelector('.open-modal-btn[data-mode="login"]');
 
   // فرم ورود را ایجاد و به مودال اضافه کن
@@ -444,15 +443,6 @@
     };
   });
 
-  // دکمه سبد خرید
-  signupBtn.onclick = function () {
-    modal.style.display = "block";
-    form.style.display = "block";
-    loginForm.style.display = "none";
-    successMessage.style.display = "none";
-    form.reset();
-  };
-
   // دکمه ورود
   loginBtn.onclick = function () {
     modal.style.display = "block";
@@ -480,16 +470,11 @@
     successMessage.innerHTML = "<p>اطلاعات شما با موفقیت ثبت شد ✅ در حال انتقال...</p>";
     successMessage.style.display = "block";
 
-    // حذف دکمه ثبت‌نام بعد از ثبت موفق
-    if (signupBtn) {
-      signupBtn.remove();
-    }
-
     setTimeout(function () {
       document.body.style.transition = "opacity 1s ease";
       document.body.style.opacity = "0";
       setTimeout(function () {
-        window.location.href = "index.html";
+        window.location.href = "download.html";
       }, 1000);
     }, 1000);
   };
@@ -510,7 +495,31 @@
     }, 1000);
   };
 
-  // پنل سمت راست فقط با دکمه ☰ فعال می‌شود
+  // افکت انتقال برای دکمه خرید مدل
+  const buyModelBtn = document.querySelector('.open-modal-btn[data-mode="login"]');
+  buyModelBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    document.body.style.transition = "opacity 1s ease";
+    document.body.style.opacity = "0";
+    setTimeout(function () {
+      window.location.href = "download.html";
+    }, 1000);
+  });
+
+  // انتقال به صفحه نخست با افکت محو شدن
+  const homeBtn = document.querySelector('.nav-links a:nth-child(1)');
+  if (homeBtn) {
+    homeBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      document.body.style.transition = "opacity 1s ease";
+      document.body.style.opacity = "0";
+      setTimeout(function () {
+        window.location.href = "index.html";
+      }, 1000);
+    });
+  }
+
+  // پنل سمت راست
   const sideToggle = document.getElementById("side-toggle");
   const sidePanel = document.getElementById("side-panel");
 
@@ -532,8 +541,10 @@
 
 
 
+
 </body>
 </html>
+
 
 
 
