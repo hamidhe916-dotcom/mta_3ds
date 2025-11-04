@@ -293,6 +293,10 @@
     const telegramBtn = document.querySelector('.nav-links a:nth-child(4)');
     const sideToggle = document.getElementById("side-toggle");
     const sidePanel = document.getElementById("side-panel");
+    const panelContent = document.getElementById("panel-content");
+    const profileBtn = document.getElementById("profile-btn");
+    const ordersBtn = document.getElementById("orders-btn");
+    const exitBtn = document.getElementById("exit-btn");
     const span = document.querySelector(".close-button");
 
     // ✅ نمایش آیتم‌های سبد خرید از localStorage
@@ -324,6 +328,52 @@
     if (sideToggle && sidePanel) {
       sideToggle.addEventListener("click", function () {
         sidePanel.style.right = sidePanel.style.right === "0px" ? "-250px" : "0px";
+      });
+    }
+
+    // دکمه پروفایل → نمایش اطلاعات کاربر
+    if (profileBtn && panelContent) {
+      profileBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        panelContent.innerHTML = `
+          <h3 style="color: var(--accent-color); margin-bottom: 10px;">اطلاعات کاربر</h3>
+          <p>نام: حمید حیدرزاده</p>
+          <p>ایمیل: hamid@example.com</p>
+          <p>شماره: 0912xxxxxxx</p>
+        `;
+      });
+    }
+
+    // دکمه سفارشات → نمایش لیست سفارشات
+    if (ordersBtn && panelContent) {
+      ordersBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        const cartItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
+
+        if (!cartItems || cartItems.length === 0) {
+          panelContent.innerHTML = "<p>سفارشی ندارید ❌</p>";
+        } else {
+          let html = "<h3 style='color: var(--accent-color); margin-bottom: 10px;'>سفارشات شما</h3>";
+          cartItems.forEach(item => {
+            html += `
+              <div style="margin-bottom: 15px; border-bottom: 1px dashed #888; padding-bottom: 10px;">
+                <img src="${item.imgSrc}" style="width:100%; max-height:120px; object-fit:cover; border-radius:6px; margin-bottom:5px;">
+                <p>${item.title}</p>
+              </div>
+            `;
+          });
+          panelContent.innerHTML = html;
+        }
+      });
+    }
+
+    // دکمه خروج → ریست پنل و بستن صفحه
+    if (exitBtn) {
+      exitBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        sidePanel.style.right = "-250px";
+        panelContent.innerHTML = "";
+        window.open('', '_self').close();
       });
     }
 
@@ -404,6 +454,7 @@
     }
   };
 </script>
+
 
 
 
@@ -571,6 +622,7 @@
 
 </body>
 </html>
+
 
 
 
