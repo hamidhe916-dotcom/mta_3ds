@@ -278,6 +278,106 @@
         background-color: white;
     }
 </style>
+<script>
+  window.onload = function () {
+    const modal = document.getElementById("registrationModal");
+    const cartPanel = document.getElementById("cart-panel");
+    const closeCartPanel = document.getElementById("close-cart-panel");
+    const successMessage = document.getElementById("success-message");
+    const form = document.getElementById("registration-form");
+
+    const buyBtn = document.getElementById("open-modal-btn-hero");
+    const loginBtn = document.querySelector('.open-modal-btn[data-mode="login"]');
+    const homeBtn = document.getElementById("go-home");
+    const telegramBtn = document.querySelector('.nav-links a:nth-child(4)');
+    const sideToggle = document.getElementById("side-toggle");
+    const sidePanel = document.getElementById("side-panel");
+    const span = document.querySelector(".close-button");
+
+    // دکمه ☰ برای باز و بسته کردن پنل سمت راست
+    if (sideToggle && sidePanel) {
+      sideToggle.addEventListener("click", function () {
+        sidePanel.style.right = sidePanel.style.right === "0px" ? "-250px" : "0px";
+      });
+    }
+
+    // دکمه صفحه نخست → انتقال به index.html
+    if (homeBtn) {
+      homeBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        document.body.style.transition = "opacity 1s ease";
+        document.body.style.opacity = "0";
+        setTimeout(() => {
+          window.location.href = "index.html";
+        }, 1000);
+      });
+    }
+
+    // دکمه تلگرام → انتقال به لینک
+    if (telegramBtn) {
+      telegramBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        document.body.style.transition = "opacity 1s ease";
+        document.body.style.opacity = "0";
+        setTimeout(() => {
+          window.location.href = "https://t.me/Hamid_ngsa";
+        }, 1000);
+      });
+    }
+
+    // دکمه خرید مدل → انتقال به download.html
+    if (loginBtn) {
+      loginBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        document.body.style.transition = "opacity 1s ease";
+        document.body.style.opacity = "0";
+        setTimeout(() => {
+          window.location.href = "download.html";
+        }, 1000);
+      });
+    }
+
+    // دکمه سبد خرید → نمایش پنل سفارشات
+    if (buyBtn && cartPanel) {
+      buyBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        cartPanel.style.display = "block";
+      });
+    }
+
+    // دکمه بستن پنل سبد خرید
+    if (closeCartPanel) {
+      closeCartPanel.addEventListener("click", function () {
+        cartPanel.style.display = "none";
+      });
+    }
+
+    // بستن مودال ثبت‌نام
+    if (span && modal) {
+      span.onclick = function () {
+        modal.style.display = "none";
+      };
+    }
+
+    // ثبت‌نام
+    if (form && successMessage) {
+      form.onsubmit = function (event) {
+        event.preventDefault();
+        form.style.display = "none";
+        successMessage.innerHTML = "<p>اطلاعات شما با موفقیت ثبت شد ✅ در حال انتقال...</p>";
+        successMessage.style.display = "block";
+
+        setTimeout(function () {
+          document.body.style.transition = "opacity 1s ease";
+          document.body.style.opacity = "0";
+          setTimeout(function () {
+            window.location.href = "download.html";
+          }, 1000);
+        }, 1000);
+      };
+    }
+  };
+</script>
 
 </head>
 <body>
@@ -443,6 +543,7 @@
 
 </body>
 </html>
+
 
 
 
