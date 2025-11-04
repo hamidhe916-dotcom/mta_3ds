@@ -5,286 +5,281 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MTA_3DS ll طراح مدل سه بعدی ام تی ای</title>
-    <style>
-        :root {
-            --primary-color: #1a1a2e; /* کد رنگ سیاه */
-            --accent-color: #ffc403; /* Bright Cyan/Electric Blue */
-            --secondary-text: #cccccc;
-            --card-bg: #252540;
-        }
+<style>
+    :root {
+        --primary-color: #1a1a2e;
+        --accent-color: #ffc403;
+        --secondary-text: #cccccc;
+        --card-bg: #252540;
+    }
 
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: var(--primary-color);
-            color: var(--secondary-text);
-            margin: 0;
-            padding: 0;
-        }
+    body {
+        font-family: 'Arial', sans-serif;
+        background: linear-gradient(rgba(26, 26, 46, 0.85), rgba(26, 26, 46, 0.85)),
+                    url('https://s6.uupload.ir/files/jowhareh_galleries_3_poster_73aab372-8275-4128-920f-e6d943077724_kt.jpeg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        color: var(--secondary-text);
+        margin: 0;
+        padding: 0;
+    }
 
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+    .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
 
-        /* Header & Navbar */
-        .header {
-            background-color: rgba(26, 26, 46, 0.8);
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(244, 245, 245, 0.1);
-        }
+    .header {
+        background-color: rgba(26, 26, 46, 0.8);
+        padding: 15px 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(244, 245, 245, 0.1);
+    }
 
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
-        .logo {
-            font-size: 1.8em;
-            font-weight: bold;
-            color: var(--accent-color);
-        }
+    .logo {
+        font-size: 1.8em;
+        font-weight: bold;
+        color: var(--accent-color);
+    }
 
-        .nav-links a {
-            color:#000;
-            text-decoration: none;
-            margin-left: 20px;
-            font-size: 1em;
-            transition: color 0.3s;
-        }
+    .nav-links a {
+        color: #000;
+        text-decoration: none;
+        margin-left: 20px;
+        font-size: 1em;
+        transition: color 0.3s;
+    }
 
-        .nav-links a:hover {
-            color: var(--accent-color);
-        }
+    .nav-links a:hover {
+        color: var(--accent-color);
+    }
 
-        /* Hero Section */
-      .hero {
-  background: linear-gradient(rgba(26, 26, 46, 0.85), rgba(26, 26, 46, 0.85)),
-              url('https://s6.uupload.ir/files/jowhareh_galleries_3_poster_73aab372-8275-4128-920f-e6d943077724_kt.jpeg');
-  background-size: cover;
-  background-position: center top;
-  background-repeat: no-repeat;
-  padding: 100px 0;
-  text-align: center;
-  border-bottom: 3px solid var(--accent-color);
-}
+    .hero {
+        padding: 100px 0;
+        text-align: center;
+        border-bottom: 3px solid var(--accent-color);
+    }
 
+    .hero h1 {
+        color: white;
+        font-size: 3em;
+        margin-bottom: 15px;
+        text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+    }
 
-        .hero h1 {
-            color: white;
-            font-size: 3em;
-            margin-bottom: 15px;
-            text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
-        }
+    .hero p {
+        font-size: 1.2em;
+        color: #aaaaaa;
+        margin-bottom: 30px;
+    }
 
-        .hero p {
-            font-size: 1.2em;
-            color: #aaaaaa;
-            margin-bottom: 30px;
-        }
+    .cta-button {
+        display: inline-block;
+        background-color: var(--accent-color);
+        color: var(--primary-color);
+        padding: 12px 30px;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        font-size: 1.1em;
+        transition: background-color 0.3s, box-shadow 0.3s;
+    }
 
-        .cta-button {
-            display: inline-block;
-            background-color: var(--accent-color);
-            color: var(--primary-color);
-            padding: 12px 30px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            font-size: 1.1em;
-            transition: background-color 0.3s, box-shadow 0.3s;
-        }
+    .cta-button:hover {
+        background-color: white;
+        box-shadow: 0 0 15px var(--accent-color);
+    }
 
-        .cta-button:hover {
-            background-color: white;
-            box-shadow: 0 0 15px var(--accent-color);
-        }
+    .content-section {
+        padding: 60px 0;
+    }
 
-        /* Content Section */
-        .content-section {
-            padding: 60px 0;
-        }
+    .section-title {
+        text-align: center;
+        font-size: 2.5em;
+        color: white;
+        margin-bottom: 40px;
+        border-bottom: 2px solid rgba(0, 240, 255, 0.2);
+        padding-bottom: 10px;
+        display: inline-block;
+        width: 100%;
+    }
 
-        .section-title {
-            text-align: center;
-            font-size: 2.5em;
-            color: white;
-            margin-bottom: 40px;
-            border-bottom: 2px solid rgba(0, 240, 255, 0.2);
-            padding-bottom: 10px;
-            display: inline-block;
-            width: 100%;
-        }
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+    }
 
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
+    .game-card {
+        background-color: var(--card-bg);
+        border: 1px solid rgba(0, 240, 255, 0.2);
+        border-radius: 10px;
+        padding: 25px;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
 
-        .game-card {
-            background-color: var(--card-bg);
-            border: 1px solid rgba(0, 240, 255, 0.2);
-            border-radius: 10px;
-            padding: 25px;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
+    .game-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 240, 255, 0.25);
+    }
 
-        .game-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 240, 255, 0.25);
-        }
-        .game-card h3 {
-            color: var(--accent-color);
-            font-size: 1.5em;
-            margin-top: 0;
-            border-bottom: 1px dashed rgba(224, 224, 224, 0.1);
-            padding-bottom: 10px;
-            margin-bottom: 15px;
-        }
+    .game-card h3 {
+        color: var(--accent-color);
+        font-size: 1.5em;
+        margin-top: 0;
+        border-bottom: 1px dashed rgba(224, 224, 224, 0.1);
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+    }
 
-        .game-card p {
-            color: var(--secondary-text);
-            font-size: 0.95em;
-            line-height: 1.6;
-        }
+    .game-card p {
+        color: var(--secondary-text);
+        font-size: 0.95em;
+        line-height: 1.6;
+    }
 
-        /* Footer */
-        .footer {
-            background-color: var(--primary-color);
-            border-top: 2px solid var(--accent-color);
-            padding: 30px 0;
-            text-align: center;
-            margin-top: 50px;
-        }
+    .footer {
+        background-color: var(--primary-color);
+        border-top: 2px solid var(--accent-color);
+        padding: 30px 0;
+        text-align: center;
+        margin-top: 50px;
+    }
 
-        .footer p {
-            margin: 5px 0;
-            font-size: 0.85em;
-        }
+    .footer p {
+        margin: 5px 0;
+        font-size: 0.85em;
+    }
 
-        .footer a {
-            color: var(--accent-color);
-            text-decoration: none;
-        }
-        
-        /* MODAL STYLES */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed;
-            z-index: 10000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.8); /* Black w/ opacity */
-            animation: fadeIn 0.3s;
-        }
+    .footer a {
+        color: var(--accent-color);
+        text-decoration: none;
+    }
 
-        @keyframes fadeIn {
-            from {opacity: 0;}
-            to {opacity: 1;}
-        }
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 10000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.8);
+        animation: fadeIn 0.3s;
+    }
 
-        .modal-content {
-            background-color: var(--card-bg);
-            margin: 10% auto; /* 10% from the top and centered */
-            padding: 30px;
-            border: 2px solid var(--accent-color);
-            width: 90%; /* Could be more or less, depending on screen size */
-            max-width: 400px;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0, 240, 255, 0.5);
-            animation: zoomIn 0.3s;
-        }
-        
-        @keyframes zoomIn {
-            from {transform: scale(0.9);}
-            to {transform: scale(1);}
-        }
+    @keyframes fadeIn {
+        from {opacity: 0;}
+        to {opacity: 1;}
+    }
 
-        .close-button {
-            color: #aaa;
-            float: left;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-            line-height: 1;
-        }
+    .modal-content {
+        background-color: var(--card-bg);
+        margin: 10% auto;
+        padding: 30px;
+        border: 2px solid var(--accent-color);
+        width: 90%;
+        max-width: 400px;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0, 240, 255, 0.5);
+        animation: zoomIn 0.3s;
+    }
 
-        .close-button:hover,
-        .close-button:focus {
-            color: var(--accent-color);
-            text-decoration: none;
-        }
+    @keyframes zoomIn {
+        from {transform: scale(0.9);}
+        to {transform: scale(1);}
+    }
 
-        .modal-content h2 {
-            color: white;
-            text-align: center;
-            margin-bottom: 20px;
-        }
+    .close-button {
+        color: #aaa;
+        float: left;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+        line-height: 1;
+    }
 
-        .form-group {
-            margin-bottom: 15px;
-        }
+    .close-button:hover,
+    .close-button:focus {
+        color: var(--accent-color);
+        text-decoration: none;
+    }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: var(--accent-color);
-            font-size: 0.9em;
-        }
+    .modal-content h2 {
+        color: white;
+        text-align: center;
+        margin-bottom: 20px;
+    }
 
-        .form-group input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid rgba(0, 240, 255, 0.4);
-            border-radius: 5px;
-            background-color: var(--primary-color);
-            color: white;
-            box-sizing: border-box;
-        }
+    .form-group {
+        margin-bottom: 15px;
+    }
 
-        .form-group input:focus {
-            border-color: var(--accent-color);
-            outline: none;
-        }
-        
-        #success-message {
-            text-align: center;
-            color: #00ffaa;
-            font-size: 1.2em;
-            font-weight: bold;
-            display: none; /* Hidden by default */
-            padding: 20px;
-            border: 2px solid #00ffaa;
-            border-radius: 8px;
-            background-color: rgba(0, 255, 170, 0.1);
-        }
-        
-        #registration-form button[type="submit"] {
-            width: 100%;
-            padding: 12px;
-            background-color: var(--accent-color);
-            color: var(--primary-color);
-            border: none;
-            border-radius: 5px;
-            font-size: 1.1em;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            font-weight: bold;
-        }
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        color: var(--accent-color);
+        font-size: 0.9em;
+    }
 
-        #registration-form button[type="submit"]:hover {
-            background-color: white;
-        }
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid rgba(0, 240, 255, 0.4);
+        border-radius: 5px;
+        background-color: var(--primary-color);
+        color: white;
+        box-sizing: border-box;
+    }
 
-    </style>
+    .form-group input:focus {
+        border-color: var(--accent-color);
+        outline: none;
+    }
+
+    #success-message {
+        text-align: center;
+        color: #00ffaa;
+        font-size: 1.2em;
+        font-weight: bold;
+        display: none;
+        padding: 20px;
+        border: 2px solid #00ffaa;
+        border-radius: 8px;
+        background-color: rgba(0, 255, 170, 0.1);
+    }
+
+    #registration-form button[type="submit"] {
+        width: 100%;
+        padding: 12px;
+        background-color: var(--accent-color);
+        color: var(--primary-color);
+        border: none;
+        border-radius: 5px;
+        font-size: 1.1em;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        font-weight: bold;
+    }
+
+    #registration-form button[type="submit"]:hover {
+        background-color: white;
+    }
+</style>
+
 </head>
 <body>
         <header class="header">
@@ -523,6 +518,7 @@
 
 </body>
 </html>
+
 
 
 
