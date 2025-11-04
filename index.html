@@ -2,56 +2,140 @@
 <html lang="fa">
 <head>
   <meta charset="UTF-8">
-  <title>مدل‌های قابل دانلود</title>
+  <title>ثبت‌نام و دانلود مدل‌ها</title>
   <style>
     body {
-      font-family: sans-serif;
-      background-color: #f0f0f0;
-      padding: 20px;
+      font-family: 'Vazir', sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 0;
       direction: rtl;
     }
-    .model-box {
-      background: #fff;
+    header {
+      background-color: #343a40;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    main {
+      padding: 30px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .section {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .btn {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin: 10px;
+    }
+    .btn-primary {
+      background-color: #007bff;
+      color: white;
+    }
+    .btn-primary:hover {
+      background-color: #0056b3;
+    }
+    .btn-success {
+      background-color: #28a745;
+      color: white;
+    }
+    .btn-success:hover {
+      background-color: #218838;
+    }
+    .btn-secondary {
+      background-color: #6c757d;
+      color: white;
+    }
+    .btn-secondary:hover {
+      background-color: #5a6268;
+    }
+    .model-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .model-card {
+      background-color: white;
       border: 1px solid #ddd;
       border-radius: 8px;
       padding: 15px;
-      margin-bottom: 20px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: center;
     }
-    .model-box img {
+    .model-card img {
       max-width: 100%;
-      border-radius: 4px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 6px;
     }
-    .model-box button {
-      margin-top: 10px;
-      padding: 8px 16px;
-      background-color: #28a745;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
+    .model-card h3 {
+      margin: 10px 0 5px;
     }
-    .model-box button:hover {
-      background-color: #218838;
+    .model-card p {
+      font-size: 14px;
+      color: #555;
     }
   </style>
 </head>
 <body>
-  <h1>مدل‌های آماده دانلود</h1>
 
-  <div class="model-box">
-    <h2>مدل سه‌بعدی شماره ۱</h2>
-    <img src="preview1.jpg" alt="پیش‌نمایش مدل ۱">
-    <p>مدل حرفه‌ای برای طراحی صنعتی</p>
-    <button onclick="window.location.href='model1.zip'">دانلود مدل</button>
-  </div>
+  <header>
+    <h1>به سایت مدل‌های سه‌بعدی خوش آمدید</h1>
+  </header>
 
-  <div class="model-box">
-    <h2>مدل سه‌بعدی شماره ۲</h2>
-    <img src="preview2.jpg" alt="پیش‌نمایش مدل ۲">
-    <p>مناسب برای پروژه‌های معماری</p>
-    <button onclick="window.location.href='model2.zip'">دانلود مدل</button>
-  </div>
+  <main>
+    <!-- بخش ثبت‌نام -->
+    <div id="signupSection" class="section">
+      <h2>برای مشاهده مدل‌ها ثبت‌نام کنید</h2>
+      <button id="signupBtn" class="btn btn-primary">ثبت‌نام</button>
+    </div>
+
+    <!-- بخش مدل‌ها -->
+    <div id="modelsSection" style="display: none;">
+      <h2 style="text-align: center;">مدل‌های قابل دانلود</h2>
+      <div class="model-grid">
+        <div class="model-card">
+          <img src="https://source.unsplash.com/random/300x180?3dmodel" alt="مدل ۱">
+          <h3>مدل شماره ۱</h3>
+          <p>مدل مناسب برای طراحی صنعتی و مهندسی</p>
+          <button class="btn btn-success" onclick="window.location.href='model1.zip'">دانلود مدل</button>
+        </div>
+        <div class="model-card">
+          <img src="https://source.unsplash.com/random/301x180?architecture" alt="مدل ۲">
+          <h3>مدل شماره ۲</h3>
+          <p>مدل سه‌بعدی برای پروژه‌های معماری</p>
+          <button class="btn btn-success" onclick="window.location.href='model2.zip'">دانلود مدل</button>
+        </div>
+        <div class="model-card">
+          <img src="https://source.unsplash.com/random/302x180?interior" alt="مدل ۳">
+          <h3>مدل شماره ۳</h3>
+          <p>مدل دکوراسیون داخلی با جزئیات بالا</p>
+          <button class="btn btn-success" onclick="window.location.href='model3.zip'">دانلود مدل</button>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 30px;">
+        <button class="btn btn-secondary" onclick="goBack()">بازگشت به ثبت‌نام</button>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    document.getElementById("signupBtn").addEventListener("click", function () {
+      document.getElementById("signupSection").style.display = "none";
+      document.getElementById("modelsSection").style.display = "block";
+    });
+
+    function goBack() {
+      document.getElementById("modelsSection").style.display = "none";
+      document.getElementById("signupSection").style.display = "block";
+    }
+  </script>
 
 </body>
 </html>
