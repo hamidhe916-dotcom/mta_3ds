@@ -107,7 +107,7 @@
 </head>
 <body>
   <div class="container">
-    <a href="index.html" class="back-btn">⬅️ برگشت به صفحه اصلی</a>
+    <a href="Shop.html" class="back-btn">⬅️ برگشت به صفحه اصلی</a>
     <h1>لیست مدل های قابل خرید</h1>
     <div class="card-grid">
       <div class="model-card">
@@ -133,6 +133,25 @@
     </div>
   </div>
 
+<!-- ✅ پیام موفقیت افزودن به سبد خرید -->
+<div id="cart-message" style="
+  display: none;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #00ffaa;
+  color: #1a1a2e;
+  padding: 15px 25px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1.1em;
+  box-shadow: 0 0 15px rgba(0,255,170,0.4);
+  z-index: 9999;
+  transition: opacity 0.5s ease;
+">
+  سفارش شما به سبد خرید اضافه شد ✅
+</div>
+
 <script>
   const backBtn = document.querySelector(".back-btn");
   backBtn.addEventListener("click", function(e) {
@@ -144,7 +163,7 @@
     }, 1000);
   });
 
-  // ✅ افزودن به سبد خرید و انتقال
+  // ✅ افزودن به سبد خرید و نمایش پیام
   const buyButtons = document.querySelectorAll(".buy-btn");
   const cartMessage = document.getElementById("cart-message");
 
@@ -173,6 +192,8 @@
   });
 </script>
 
+
 </body>
 </html>
+
 
