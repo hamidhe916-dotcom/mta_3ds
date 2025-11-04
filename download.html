@@ -98,4 +98,49 @@
       transition: background-color 0.3s;
     }
 
-    .back-btn:hover
+    .back-btn:hover {
+      background-color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="MTA.html" class="back-btn">⬅️ برگشت به صفحه اصلی</a>
+    <h1>مدل‌های آماده برای خرید</h1>
+    <div class="card-grid">
+      <div class="model-card">
+        <img src="https://copilot.microsoft.com/th/id/BCO.73532724-2bec-4bce-b8fd-a8ebc92f769d.png" alt="ماشین کلاسیک">
+        <h3>ماشین کلاسیک</h3>
+        <a href="#" class="buy-btn" target="_blank">🛒 خرید مدل</a>
+      </div>
+      <div class="model-card">
+        <img src="https://copilot.microsoft.com/th/id/BCO.73532724-2bec-4bce-b8fd-a8ebc92f769d.png" alt="ساختمان شهری">
+        <h3>ساختمان شهری</h3>
+        <a href="#" class="buy-btn" target="_blank">🛒 خرید مدل</a>
+      </div>
+      <div class="model-card">
+        <img src="https://copilot.microsoft.com/th/id/BCO.73532724-2bec-4bce-b8fd-a8ebc92f769d.png" alt="اسلحه تاکتیکال">
+        <h3>اسلحه تاکتیکال</h3>
+        <a href="#" class="buy-btn" target="_blank">🛒 خرید مدل</a>
+      </div>
+      <div class="model-card">
+        <img src="https://copilot.microsoft.com/th/id/BCO.73532724-2bec-4bce-b8fd-a8ebc92f769d.png" alt="کاراکتر گیم">
+        <h3>کاراکتر گیم</h3>
+        <a href="#" class="buy-btn" target="_blank">🛒 خرید مدل</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const backBtn = document.querySelector(".back-btn");
+    backBtn.addEventListener("click", function(e) {
+      e.preventDefault();
+      document.body.style.transition = "opacity 1s ease";
+      document.body.style.opacity = "0";
+      setTimeout(function() {
+        window.location.href = "MTA.html";
+      }, 1000);
+    });
+  </script>
+</body>
+</html>
