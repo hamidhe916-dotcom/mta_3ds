@@ -3,137 +3,183 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>پنل کاربری | پوشاک حیدرزاده</title>
+  <title>پوشاک حیدرزاده | صفحه نخست</title>
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       font-family: 'Vazirmatn', sans-serif;
-      background: #0f0f0f;
+      background: url('https://copilot.microsoft.com/th/id/BCO.dd9e2052-8b22-4f12-8ea2-28b90b55b38f.png') center/cover no-repeat;
+      background-color: #121212;
+      color: #fff;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background: #1a1a1a;
+      padding: 0.5rem 1rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      color: #f5c542;
+      font-size: 1.5rem;
+    }
+    nav a {
+      color: #ccc;
+      text-decoration: none;
+      margin-left: 1rem;
+      font-size: 0.95rem;
+    }
+    nav a:hover {
+      color: #f5c542;
+    }
+    .hero {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .form-box {
+      background: rgba(0,0,0,0.75);
+      padding: 2rem;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 0 20px #000;
+    }
+    .form-box h2 {
+      text-align: center;
+      color: #f5c542;
+      margin-bottom: 1rem;
+    }
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .tab {
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      color: #ccc;
+      border-bottom: 2px solid transparent;
+    }
+    .tab.active {
+      color: #f5c542;
+      border-bottom: 2px solid #f5c542;
+    }
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 0.7rem;
+      border-radius: 8px;
+      border: none;
+      background: #333;
       color: #fff;
     }
-    #side-toggle {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      font-size: 28px;
-      color: #f5c542;
+    .form-group input::placeholder {
+      color: #aaa;
+    }
+    .forgot-link {
+      text-align: left;
+      margin-bottom: 1rem;
+      font-size: 0.875rem;
       cursor: pointer;
-      z-index: 9999;
+      color: #aaa;
     }
-    #side-panel {
-      position: fixed;
-      top: 0;
-      right: -260px;
-      width: 260px;
-      height: 100%;
-      background-color: #1a1a1a;
-      box-shadow: -2px 0 10px rgba(0,0,0,0.5);
-      transition: right 0.3s ease;
-      z-index: 9998;
-      padding: 30px;
-      box-sizing: border-box;
-    }
-    #side-panel h2 {
+    .forgot-link:hover {
       color: #f5c542;
-      font-size: 1.6em;
-      margin-bottom: 30px;
-      text-align: center;
     }
-    .panel-btn {
-      display: block;
+    .submit-btn {
       width: 100%;
-      background-color: #f5c542;
+      padding: 0.8rem;
+      background: #f5c542;
       color: #111;
+      border: none;
+      border-radius: 8px;
       font-weight: bold;
-      text-align: center;
-      padding: 12px;
-      margin-bottom: 15px;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: 0.3s;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
     }
-    .panel-btn:hover {
-      background-color: #fff;
+    .submit-btn:hover {
+      background: #fff;
       color: #000;
-    }
-    #panel-content {
-      margin-top: 20px;
-      color: #ccc;
-      font-size: 0.95em;
     }
   </style>
 </head>
 <body>
 
-  <!-- دکمه باز کردن پنل -->
-  <div id="side-toggle">☰</div>
+<header>
+  <h1>پوشاک حیدرزاده</h1>
+  <nav>
+    <a href="#">صفحه نخست</a>
+    <a href="#">تماس با ما</a>
+    <a href="#">پنل کاربری</a>
+  </nav>
+</header>
 
-  <!-- پنل کشویی -->
-  <div id="side-panel">
-    <h2>پنل کاربری</h2>
-    <a href="#" id="profileBtn" class="panel-btn">پروفایل</a>
-    <a href="#" id="ordersBtn" class="panel-btn">سفارشات</a>
-    <a href="#" id="downloadsBtn" class="panel-btn">دانلودها</a>
-    <a href="#" id="exitBtn" class="panel-btn">خروج</a>
-    <div id="panel-content"></div>
+<div class="hero">
+  <div class="form-box">
+    <h2>ورود / ثبت‌نام</h2>
+    <div class="tabs">
+      <span class="tab active" id="loginTab" onclick="showForm('login')">ورود</span>
+      <span class="tab" id="registerTab" onclick="showForm('register')">ثبت‌نام</span>
+    </div>
+    <form id="loginForm">
+      <div class="form-group">
+        <input type="text" placeholder="نام کاربری" required />
+      </div>
+      <div class="form-group">
+        <input type="password" placeholder="رمز عبور" required />
+      </div>
+      <div class="forgot-link" onclick="resetPassword()">فراموشی رمز عبور</div>
+      <button type="submit" class="submit-btn">ورود</button>
+    </form>
+
+    <form id="registerForm" style="display: none;">
+      <div class="form-group">
+        <input type="text" placeholder="نام کاربری" required />
+      </div>
+      <div class="form-group">
+        <input type="email" placeholder="ایمیل" required />
+      </div>
+      <div class="form-group">
+        <input type="password" placeholder="رمز عبور" required />
+      </div>
+      <button type="submit" class="submit-btn">ثبت‌نام</button>
+    </form>
   </div>
+</div>
 
-  <script>
-    const sideToggle = document.getElementById("side-toggle");
-    const sidePanel = document.getElementById("side-panel");
-    const panelContent = document.getElementById("panel-content");
+<script>
+  function showForm(type) {
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
+    const loginTab = document.getElementById('loginTab');
+    const registerTab = document.getElementById('registerTab');
 
-    sideToggle.onclick = () => {
-      sidePanel.style.right = sidePanel.style.right === "0px" ? "-260px" : "0px";
-    };
+    if (type === 'login') {
+      loginForm.style.display = 'block';
+      registerForm.style.display = 'none';
+      loginTab.classList.add('active');
+      registerTab.classList.remove('active');
+    } else {
+      loginForm.style.display = 'none';
+      registerForm.style.display = 'block';
+      loginTab.classList.remove('active');
+      registerTab.classList.add('active');
+    }
+  }
 
-    document.getElementById("profileBtn").onclick = (e) => {
-      e.preventDefault();
-      const user = JSON.parse(localStorage.getItem("registeredUser"));
-      if (user) {
-        panelContent.innerHTML = `
-          <h3 style="color:#f5c542;">اطلاعات کاربر</h3>
-          <p>نام کاربری: ${user.username}</p>
-          <p>ایمیل: ${user.email}</p>
-          <p>شماره: ${user.phone}</p>
-        `;
-      } else {
-        panelContent.innerHTML = "<p>اطلاعاتی ثبت نشده است ❌</p>";
-      }
-    };
-
-    document.getElementById("ordersBtn").onclick = (e) => {
-      e.preventDefault();
-      const cartItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
-      if (cartItems.length === 0) {
-        panelContent.innerHTML = "<p>سفارشی ثبت نشده است ❌</p>";
-      } else {
-        let html = "<h3 style='color:#f5c542;'>سفارشات شما</h3>";
-        cartItems.forEach(item => {
-          html += `
-            <div style="margin-bottom:15px; border-bottom:1px dashed #888; padding-bottom:10px;">
-              <p>محصول: ${item.title}</p>
-              <p>تعداد: ${item.qty}</p>
-            </div>
-          `;
-        });
-        panelContent.innerHTML = html;
-      }
-    };
-
-    document.getElementById("downloadsBtn").onclick = (e) => {
-      e.preventDefault();
-      panelContent.innerHTML = "<p>برای دانلودها ابتدا باید خرید انجام دهید.</p>";
-    };
-
-    document.getElementById("exitBtn").onclick = (e) => {
-      e.preventDefault();
-      sidePanel.style.right = "-260px";
-      panelContent.innerHTML = "";
-      alert("خروج انجام شد ✅");
-    };
-  </script>
+  function resetPassword() {
+    alert('لینک بازیابی رمز عبور برای شما ارسال شد!');
+  }
+</script>
 
 </body>
 </html>
