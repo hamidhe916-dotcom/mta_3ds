@@ -410,6 +410,7 @@
     const toast = document.getElementById("login-error-toast");
     const centerToast = document.getElementById("center-toast");
 
+    // ✅ نوتیفیکیشن وسط صفحه با افکت
     function showCenterToast(message = "لطفاً ابتدا ثبت‌نام کنید ❗") {
       centerToast.textContent = message;
       centerToast.style.opacity = "1";
@@ -420,6 +421,7 @@
       }, 3000);
     }
 
+    // فرم ورود داینامیک
     const loginForm = document.createElement("form");
     loginForm.id = "login-form";
     loginForm.style.display = "none";
@@ -447,6 +449,7 @@
     `;
     document.querySelector(".modal-content").appendChild(loginForm);
 
+    // باز کردن مودال ثبت‌نام
     openBtns.forEach(btn => {
       btn.onclick = function () {
         modal.style.display = "block";
@@ -457,6 +460,7 @@
       };
     });
 
+    // باز کردن مودال ورود با بررسی ثبت‌نام
     loginBtn.onclick = function () {
       const isRegistered = localStorage.getItem("isRegistered") === "true";
       if (!isRegistered) {
@@ -470,6 +474,7 @@
       loginForm.reset();
     };
 
+    // بستن مودال
     span.onclick = function () {
       modal.style.display = "none";
     };
@@ -480,39 +485,49 @@
       }
     };
 
+    // ثبت‌نام
     form.onsubmit = function (event) {
       event.preventDefault();
+
       const userData = {
         username: document.getElementById("username").value.trim(),
         password: document.getElementById("password").value.trim(),
         email: document.getElementById("email").value.trim(),
         phone: document.getElementById("phone").value.trim()
       };
+
       localStorage.setItem("registeredUser", JSON.stringify(userData));
       localStorage.setItem("isRegistered", "true");
+
       form.style.display = "none";
       successMessage.innerHTML = "<p>اطلاعات شما با موفقیت ثبت شد ✅ حالا لطفاً وارد شوید.</p>";
       successMessage.style.display = "block";
+
       const signupBtn = document.getElementById("open-modal-btn-hero");
       if (signupBtn) {
         signupBtn.remove();
       }
     };
 
+    // ورود با بررسی اطلاعات
     loginForm.onsubmit = function (event) {
       event.preventDefault();
+
       const enteredUsername = document.getElementById("login-username").value.trim();
       const enteredPassword = document.getElementById("login-password").value.trim();
       const savedUser = JSON.parse(localStorage.getItem("registeredUser"));
+
       if (
         savedUser &&
         enteredUsername === savedUser.username &&
         enteredPassword === savedUser.password
       ) {
         localStorage.setItem("isLoggedIn", "true");
+
         loginForm.style.display = "none";
         successMessage.innerHTML = "<p>ورود موفقیت‌آمیز بود ✅ در حال انتقال...</p>";
         successMessage.style.display = "block";
+
         setTimeout(() => {
           document.body.style.transition = "opacity 1s ease";
           document.body.style.opacity = "0";
@@ -528,6 +543,7 @@
       }
     };
 
+    // کنترل پنل سمت راست
     const sideToggle = document.getElementById("side-toggle");
     const sidePanel = document.getElementById("side-panel");
     const panelContent = document.getElementById("panel-content");
@@ -558,6 +574,7 @@
       ordersBtn.onclick = function (e) {
         e.preventDefault();
         const cartItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
+
         if (!cartItems || cartItems.length === 0) {
           panelContent.innerHTML = "<p>سفارشی ندارید ❌</p>";
         } else {
@@ -591,35 +608,25 @@
       };
     }
 
+    // محدودسازی کلیک قبل از ثبت‌نام و ورود
     const protectedButtons = document.querySelectorAll(".cta-button");
     protectedButtons.forEach(btn => {
       btn.addEventListener("click", function (e) {
         const isRegistered = localStorage.getItem("isRegistered") === "true";
         const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
         if (!isRegistered) {
           e.preventDefault();
-          showCenterToast
+          showCenterToast("لطفاً ابتدا ثبت‌نام کنید تا بتوانید از امکانات سایت استفاده کنید.");
+        } else if (!isLoggedIn) {
+          e.preventDefault();
+          showCenterToast("ثبت‌نام انجام شده ✅ حالا لطفاً وارد شوید تا امکانات فعال شوند.");
+        }
+      });
+    });
+  };
+</script>
 
-
-
-
-<div id="center-toast" style="
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.9);
-  background-color: #ff4d4d;
-  color: white;
-  padding: 20px 30px;
-  border-radius: 10px;
-  font-size: 1.1em;
-  font-weight: bold;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-  z-index: 99999;
-  opacity: 0;
-  transition: opacity 0.5s ease, transform 0.5s ease;
-  pointer-events: none;
-">لطفاً ابتدا ثبت‌نام کنید ❗</div>
 
 
 
@@ -630,6 +637,7 @@
 
 </body>
 </html>
+
 
 
 
