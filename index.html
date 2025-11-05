@@ -1,126 +1,156 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>پنل ادمین | فقط حمید</title>
+  <title>پوشاک حیدرزاده | خانه</title>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body {
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
       font-family: 'Vazirmatn', sans-serif;
-      background: #1f1f1f;
+    }
+    body {
+      background: linear-gradient(to bottom, #0f0f0f, #1a1a1a);
       color: #fff;
-      margin: 0;
-      padding: 0;
+      overflow-x: hidden;
+    }
+    header {
+      background: rgba(0,0,0,0.8);
+      padding: 1rem 2rem;
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
-      height: 100vh;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 0 10px #000;
     }
-    .admin-box {
-      background: #2c2c2c;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
-      width: 420px;
-      animation: fadeIn 0.6s ease;
+    header h1 {
+      font-size: 1.8rem;
+      color: #f5c542;
     }
-    @keyframes fadeIn {
-      from {opacity: 0; transform: scale(0.9);}
-      to {opacity: 1; transform: scale(1);}
+    nav a {
+      margin: 0 1rem;
+      color: #ccc;
+      text-decoration: none;
+      transition: 0.3s;
     }
-    .admin-box h2 {
+    nav a:hover {
+      color: #f5c542;
+    }
+    .hero {
+      height: 90vh;
+      background: url('https://images.unsplash.com/photo-1600180758890-6b94519a8ba3') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      margin-bottom: 20px;
-      font-size: 24px;
+      position: relative;
     }
-    .admin-box button {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      background: #ff3b3b;
-      border: none;
-      border-radius: 6px;
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
       color: #fff;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background 0.3s ease;
     }
-    .admin-box button:hover {
-      background: #e62e2e;
+    .hero-content h2 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      animation: fadeInDown 1s ease-out;
     }
-    .notification {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(0);
+    .hero-content p {
+      font-size: 1.2rem;
+      color: #ccc;
+      animation: fadeInUp 1.2s ease-out;
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      padding: 2rem;
+    }
+    .category {
       background: #222;
-      color: #fff;
-      padding: 20px 30px;
       border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.6);
-      font-size: 16px;
-      transition: transform 0.5s ease;
-      z-index: 999;
+      padding: 1rem;
+      text-align: center;
+      transition: 0.3s;
+      cursor: pointer;
     }
-    .notification.show {
-      transform: translate(-50%, -50%) scale(1);
+    .category:hover {
+      background: #333;
+      transform: translateY(-5px);
+      box-shadow: 0 0 10px #f5c54255;
+    }
+    .category img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+    }
+    footer {
+      background: #111;
+      padding: 2rem;
+      text-align: center;
+      color: #777;
+      font-size: 0.9rem;
     }
   </style>
 </head>
 <body>
-  <div class="admin-box">
-    <h2>پنل ادمین (فقط حمید)</h2>
-    <button onclick="addProduct()">➕ افزودن محصول</button>
-    <button onclick="editProduct()">✏️ ویرایش محصول</button>
-    <button onclick="deleteProduct()">🗑️ حذف محصول</button>
-    <button onclick="viewOrders()">📦 مشاهده سفارش‌ها</button>
-    <button onclick="deleteUsers()">🚫 حذف اطلاعات کاربران</button>
-  </div>
 
-  <div class="notification" id="notif"></div>
+  <header>
+    <h1>پوشاک حیدرزاده</h1>
+    <nav>
+      <a href="#">خانه</a>
+      <a href="#">محصولات</a>
+      <a href="#">درباره ما</a>
+      <a href="#">تماس با ما</a>
+    </nav>
+  </header>
 
-  <script>
-    const currentUser = "Hamid"; // فقط حمید اجازه داره
+  <section class="hero">
+    <div class="hero-content">
+      <h2>استایل مردانه، جسور و خاص</h2>
+      <p>با پوشاک حیدرزاده، متفاوت باش</p>
+    </div>
+  </section>
 
-    function showNotif(message) {
-      const notif = document.getElementById("notif");
-      notif.textContent = message;
-      notif.classList.add("show");
-      setTimeout(() => notif.classList.remove("show"), 3000);
-    }
+  <section class="categories">
+    <div class="category">
+      <img src="https://images.unsplash.com/photo-1602810318383-4c0b2f7c9a3d" alt="پیراهن">
+      <h3>پیراهن</h3>
+    </div>
+    <div class="category">
+      <img src="https://images.unsplash.com/photo-1618354691373-0d1b8e9a4c3d" alt="شلوار">
+      <h3>شلوار</h3>
+    </div>
+    <div class="category">
+      <img src="https://images.unsplash.com/photo-1600180758890-6b94519a8ba3" alt="کت">
+      <h3>کت و کاپشن</h3>
+    </div>
+    <div class="category">
+      <img src="https://images.unsplash.com/photo-1600180758890-6b94519a8ba3" alt="اکسسوری">
+      <h3>اکسسوری</h3>
+    </div>
+  </section>
 
-    function checkAccess(action) {
-      if (currentUser !== "Hamid") {
-        showNotif("دسترسی غیرمجاز ❌");
-        return false;
-      }
-      return true;
-    }
+  <footer>
+    © 2025 پوشاک حیدرزاده | طراحی شده با ❤️
+  </footer>
 
-    function addProduct() {
-      if (!checkAccess()) return;
-      showNotif("فرم افزودن محصول باز شد 🛍️");
-    }
-
-    function editProduct() {
-      if (!checkAccess()) return;
-      showNotif("ویرایش محصول فعال شد ✏️");
-    }
-
-    function deleteProduct() {
-      if (!checkAccess()) return;
-      showNotif("محصول حذف شد 🗑️");
-    }
-
-    function viewOrders() {
-      if (!checkAccess()) return;
-      showNotif("نمایش سفارش‌ها 📦");
-    }
-
-    function deleteUsers() {
-      if (!checkAccess()) return;
-      showNotif("اطلاعات کاربران حذف شد 🚫");
-    }
-  </script>
 </body>
 </html>
