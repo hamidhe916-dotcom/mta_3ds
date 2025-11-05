@@ -3,128 +3,120 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>جزئیات محصول | پوشاک حیدرزاده</title>
+  <title>ورود / ثبت‌نام | پوشاک حیدرزاده</title>
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --primary: #0f0f0f;
-      --accent: #f5c542;
-      --text: #ccc;
-      --card: #1a1a1a;
-    }
     body {
       margin: 0;
       font-family: 'Vazirmatn', sans-serif;
-      background: var(--primary);
-      color: var(--text);
-    }
-    .container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 2rem;
+      background: url('https://copilot.microsoft.com/th/id/BCO.aed7faed-844b-43af-8cae-b62bdccafc02.png') center/cover no-repeat;
+      background-color: #121212;
+      color: #fff;
       display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
     }
-    .gallery {
-      flex: 1;
-      min-width: 300px;
-    }
-    .gallery img {
-      width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 0 10px #000;
-      transition: 0.3s;
-    }
-    .gallery img:hover {
-      transform: scale(1.05);
-    }
-    .details {
-      flex: 1;
-      min-width: 300px;
-      background: var(--card);
+    .form-box {
+      background: rgba(0,0,0,0.7);
       padding: 2rem;
       border-radius: 12px;
-      box-shadow: 0 0 15px #000;
-    }
-    .details h2 {
-      font-size: 2rem;
-      color: var(--accent);
-      margin-bottom: 1rem;
-    }
-    .details p {
-      font-size: 1rem;
-      color: var(--text);
-      margin-bottom: 1rem;
-    }
-    .options {
-      margin-bottom: 1rem;
-    }
-    .options label {
-      display: block;
-      margin-bottom: 0.5rem;
-      color: var(--accent);
-    }
-    .options select, .options input {
       width: 100%;
-      padding: 0.5rem;
-      border-radius: 5px;
+      max-width: 400px;
+      box-shadow: 0 0 20px #000;
+    }
+    .form-box h1 {
+      text-align: center;
+      color: #f5c542;
+      margin-bottom: 1rem;
+    }
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .tab {
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      color: #ccc;
+      border-bottom: 2px solid transparent;
+    }
+    .tab.active {
+      color: #f5c542;
+      border-bottom: 2px solid #f5c542;
+    }
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 0.7rem;
+      border-radius: 8px;
       border: none;
-      background: #222;
+      background: #333;
       color: #fff;
     }
-    .add-to-cart {
-      background: var(--accent);
+    .form-group input::placeholder {
+      color: #aaa;
+    }
+    .submit-btn {
+      width: 100%;
+      padding: 0.8rem;
+      background: #f5c542;
       color: #111;
-      padding: 1rem;
       border: none;
-      border-radius: 10px;
-      font-size: 1rem;
+      border-radius: 8px;
+      font-weight: bold;
       cursor: pointer;
       transition: 0.3s;
-      width: 100%;
-      font-weight: bold;
     }
-    .add-to-cart:hover {
+    .submit-btn:hover {
       background: #fff;
       color: #000;
-      transform: scale(1.05);
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <div class="gallery">
-      <img src="https://images.unsplash.com/photo-1602810318383-4c0b2f7c9a3d" alt="محصول">
+  <div class="form-box">
+    <h1>پوشاک حیدرزاده</h1>
+    <div class="tabs">
+      <div class="tab active" onclick="showForm('login')">ورود</div>
+      <div class="tab" onclick="showForm('register')">ثبت‌نام</div>
     </div>
-    <div class="details">
-      <h2>پیراهن مردانه کلاسیک</h2>
-      <p>پارچه نخ پنبه، دوخت تمیز، مناسب استایل رسمی و نیمه‌رسمی</p>
-      <div class="options">
-        <label for="size">سایز:</label>
-        <select id="size">
-          <option>Small</option>
-          <option>Medium</option>
-          <option>Large</option>
-          <option>X-Large</option>
-        </select>
+
+    <form id="login-form">
+      <div class="form-group">
+        <input type="text" placeholder="نام کاربری" required />
       </div>
-      <div class="options">
-        <label for="color">رنگ:</label>
-        <select id="color">
-          <option>مشکی</option>
-          <option>سفید</option>
-          <option>سرمه‌ای</option>
-        </select>
+      <div class="form-group">
+        <input type="password" placeholder="رمز عبور" required />
       </div>
-      <div class="options">
-        <label for="qty">تعداد:</label>
-        <input type="number" id="qty" value="1" min="1" />
+      <button class="submit-btn">ورود</button>
+    </form>
+
+    <form id="register-form" style="display:none;">
+      <div class="form-group">
+        <input type="text" placeholder="نام کاربری" required />
       </div>
-      <button class="add-to-cart" onclick="alert('افزوده شد به سبد خرید ✅')">افزودن به سبد خرید</button>
-    </div>
+      <div class="form-group">
+        <input type="email" placeholder="ایمیل" required />
+      </div>
+      <div class="form-group">
+        <input type="password" placeholder="رمز عبور" required />
+      </div>
+      <button class="submit-btn">ثبت‌نام</button>
+    </form>
   </div>
+
+  <script>
+    function showForm(mode) {
+      document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+      document.querySelector(`.tab[onclick="showForm('${mode}')"]`).classList.add('active');
+      document.getElementById('login-form').style.display = mode === 'login' ? 'block' : 'none';
+      document.getElementById('register-form').style.display = mode === 'register' ? 'block' : 'none';
+    }
+  </script>
 
 </body>
 </html>
