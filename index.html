@@ -10,173 +10,57 @@
       margin: 0; padding: 0; box-sizing: border-box;
       font-family: 'Vazirmatn', sans-serif;
     }
-    body {
-      background: #0f0f0f;
-      color: #fff;
-      overflow-x: hidden;
-    }
-    header {
-      background: rgba(0,0,0,0.85);
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 0 10px #000;
-    }
-    header h1 {
-      font-size: 1.8rem;
-      color: #f5c542;
-    }
-    nav a {
-      margin: 0 1rem;
-      color: #ccc;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-    nav a:hover {
-      color: #f5c542;
-    }
-    .hero {
-      height: 100vh;
-      background: url('https://images.unsplash.com/photo-1600180758890-6b94519a8ba3') center/cover no-repeat;
+    body, html {
+      height: 100%;
+      background: url('https://copilot.microsoft.com/th/id/BCO.d3140e5d-89a6-4123-a9a4-da9cf0fe1e0b.png') center/cover no-repeat;
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      position: relative;
     }
-    .hero::after {
-      content: "";
+    .overlay {
       position: absolute;
       inset: 0;
       background: rgba(0,0,0,0.6);
+      z-index: 0;
     }
-    .hero-content {
+    .center-content {
       position: relative;
       z-index: 1;
+      text-align: center;
       color: #fff;
       animation: fadeIn 1.5s ease-out;
     }
-    .hero-content h2 {
-      font-size: 3rem;
+    .center-content h1 {
+      font-size: 2.5rem;
       margin-bottom: 1rem;
       color: #f5c542;
     }
-    .hero-content p {
-      font-size: 1.2rem;
-      color: #ccc;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
-    }
-    .categories {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-      padding: 3rem 2rem;
-      background: #1a1a1a;
-    }
-    .category {
-      background: #222;
-      border-radius: 12px;
-      padding: 1rem;
-      text-align: center;
-      transition: 0.3s;
-      cursor: pointer;
-      box-shadow: 0 0 10px #000;
-    }
-    .category:hover {
-      background: #333;
-      transform: translateY(-5px);
-      box-shadow: 0 0 15px #f5c54255;
-    }
-    .category img {
-      width: 100%;
-      border-radius: 8px;
-      margin-bottom: 0.5rem;
-    }
-    .category h3 {
-      color: #f5c542;
-      font-size: 1.1rem;
-    }
-    .cta {
-      text-align: center;
-      padding: 2rem;
-      background: #111;
-    }
-    .cta button {
+    .center-content button {
       background: #f5c542;
       color: #111;
       padding: 1rem 2rem;
       border: none;
       border-radius: 10px;
-      font-size: 1rem;
+      font-size: 1.2rem;
       cursor: pointer;
       transition: 0.3s;
     }
-    .cta button:hover {
+    .center-content button:hover {
       background: #fff;
       color: #000;
       transform: scale(1.05);
     }
-    footer {
-      background: #0d0d0d;
-      padding: 2rem;
-      text-align: center;
-      color: #777;
-      font-size: 0.9rem;
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
     }
   </style>
 </head>
 <body>
-
-  <header>
+  <div class="overlay"></div>
+  <div class="center-content">
     <h1>پوشاک حیدرزاده</h1>
-    <nav>
-      <a href="#">خانه</a>
-      <a href="#">محصولات</a>
-      <a href="#">سبد خرید</a>
-      <a href="#">ورود</a>
-    </nav>
-  </header>
-
-  <section class="hero">
-    <div class="hero-content">
-      <h2>استایل مردانه، جسور و خاص</h2>
-      <p>با پوشاک حیدرزاده، متفاوت باش</p>
-    </div>
-  </section>
-
-  <section class="categories">
-    <div class="category">
-      <img src="https://images.unsplash.com/photo-1602810318383-4c0b2f7c9a3d" alt="پیراهن">
-      <h3>پیراهن</h3>
-    </div>
-    <div class="category">
-      <img src="https://images.unsplash.com/photo-1618354691373-0d1b8e9a4c3d" alt="شلوار">
-      <h3>شلوار</h3>
-    </div>
-    <div class="category">
-      <img src="https://images.unsplash.com/photo-1600180758890-6b94519a8ba3" alt="کت">
-      <h3>کت و کاپشن</h3>
-    </div>
-    <div class="category">
-      <img src="https://images.unsplash.com/photo-1600180758890-6b94519a8ba3" alt="اکسسوری">
-      <h3>اکسسوری</h3>
-    </div>
-  </section>
-
-  <section class="cta">
-    <button onclick="alert('به زودی وارد فروشگاه می‌شوید!')">ورود به فروشگاه</button>
-  </section>
-
-  <footer>
-    © 2025 پوشاک حیدرزاده | طراحی شده با ❤️
-  </footer>
-
+    <button onclick="alert('به فروشگاه خوش آمدید!')">ورود به فروشگاه</button>
+  </div>
 </body>
 </html>
