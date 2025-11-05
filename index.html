@@ -485,7 +485,7 @@
       }
     };
 
-    // ثبت‌نام
+    // ✅ ثبت‌نام با نوتیف و افکت خروج
     form.onsubmit = function (event) {
       event.preventDefault();
 
@@ -500,13 +500,22 @@
       localStorage.setItem("isRegistered", "true");
 
       form.style.display = "none";
-      successMessage.innerHTML = "<p>اطلاعات شما با موفقیت ثبت شد ✅ حالا لطفاً وارد شوید.</p>";
-      successMessage.style.display = "block";
+      successMessage.style.display = "none";
+      showCenterToast("ثبت‌نام انجام شد ✅ حالا لطفاً وارد شوید.");
 
       const signupBtn = document.getElementById("open-modal-btn-hero");
       if (signupBtn) {
         signupBtn.remove();
       }
+
+      setTimeout(() => {
+        modal.style.transition = "opacity 0.6s ease";
+        modal.style.opacity = "0";
+        setTimeout(() => {
+          modal.style.display = "none";
+          modal.style.opacity = "1";
+        }, 600);
+      }, 1000);
     };
 
     // ورود با بررسی اطلاعات
@@ -617,19 +626,28 @@
 
         if (!isRegistered) {
           e.preventDefault();
-          showCenterToast("لطفاً ابتدا ثبت‌نام کنید تا بتوانید از امکانات سایت استفاده کنید.");
-        } else if (!isLoggedIn) {
-          e.preventDefault();
-          showCenterToast("ثبت‌نام انجام شده ✅ حالا لطفاً وارد شوید تا امکانات فعال شوند.");
-        }
-      });
-    });
-  };
-</script>
+          showCenterToast("لطفاً ابتدا ثبت‌نام
 
 
 
 
+<div id="center-toast" style="
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  background-color: #ff4d4d;
+  color: white;
+  padding: 20px 30px;
+  border-radius: 10px;
+  font-size: 1.1em;
+  font-weight: bold;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  z-index: 99999;
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  pointer-events: none;
+">لطفاً ابتدا ثبت‌نام کنید ❗</div>
 
 
 
@@ -637,6 +655,7 @@
 
 </body>
 </html>
+
 
 
 
