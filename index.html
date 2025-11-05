@@ -97,6 +97,31 @@
       color: #000;
       transform: scale(1.03);
     }
+
+    /* ✅ افکت خوش‌آمدگویی */
+    #notification {
+      position: fixed;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(245, 197, 66, 0.95);
+      color: #111;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      box-shadow: 0 0 20px #f5c542;
+      z-index: 9999;
+      opacity: 0;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    #notification.show {
+      opacity: 1;
+      transform: translateX(-50%) scale(1.05);
+    }
+    #notification.hidden {
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -132,6 +157,9 @@
   </form>
 </div>
 
+<!-- ✅ پیام خوش‌آمدگویی -->
+<div id="notification" class="hidden"></div>
+
 <script>
   function showForm(type) {
     const loginForm = document.getElementById('loginForm');
@@ -155,6 +183,27 @@
   function resetPassword() {
     alert('لینک بازیابی رمز عبور برای شما ارسال شد!');
   }
+
+  function showNotification(message) {
+    const note = document.getElementById('notification');
+    note.textContent = message;
+    note.classList.remove('hidden');
+    setTimeout(() => note.classList.add('show'), 100);
+    setTimeout(() => {
+      note.classList.remove('show');
+      setTimeout(() => note.classList.add('hidden'), 500);
+    }, 3000);
+  }
+
+  document.querySelector('#loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    showNotification('🎉 خوش آمدید به فروشگاه پوشاک حیدرزاده');
+  });
+
+  document.querySelector('#registerForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    showNotification('✅ شما با موفقیت در فروشگاه ما ثبت‌نام کردید');
+  });
 </script>
 
 </body>
