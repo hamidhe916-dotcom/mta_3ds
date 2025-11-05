@@ -437,26 +437,26 @@
     `;
     document.querySelector(".modal-content").appendChild(loginForm);
 
-// باز کردن مودال ورود با بررسی ثبت‌نام
-loginBtn.onclick = function () {
-  const isRegistered = localStorage.getItem("isRegistered") === "true";
-
-  if (!isRegistered) {
-    alert("لطفاً ابتدا ثبت‌نام کنید تا بتوانید وارد شوید.");
-    return;
-  }
-
-  modal.style.display = "block";
-  form.style.display = "none";
-  loginForm.style.display = "block";
-  successMessage.style.display = "none";
-  loginForm.reset();
-};
-
+    // باز کردن مودال ثبت‌نام
+    openBtns.forEach(btn => {
+      btn.onclick = function () {
+        modal.style.display = "block";
+        form.style.display = "block";
+        loginForm.style.display = "none";
+        successMessage.style.display = "none";
+        form.reset();
+      };
     });
 
-    // باز کردن مودال ورود
+    // باز کردن مودال ورود با بررسی ثبت‌نام
     loginBtn.onclick = function () {
+      const isRegistered = localStorage.getItem("isRegistered") === "true";
+
+      if (!isRegistered) {
+        alert("لطفاً ابتدا ثبت‌نام کنید تا بتوانید وارد شوید.");
+        return;
+      }
+
       modal.style.display = "block";
       form.style.display = "none";
       loginForm.style.display = "block";
@@ -636,8 +636,10 @@ loginBtn.onclick = function () {
 
 
 
+
 </body>
 </html>
+
 
 
 
