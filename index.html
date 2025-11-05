@@ -3,67 +3,128 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>پوشاک حیدرزاده | خانه</title>
+  <title>جزئیات محصول | پوشاک حیدرزاده</title>
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0; padding: 0; box-sizing: border-box;
+    :root {
+      --primary: #0f0f0f;
+      --accent: #f5c542;
+      --text: #ccc;
+      --card: #1a1a1a;
+    }
+    body {
+      margin: 0;
       font-family: 'Vazirmatn', sans-serif;
+      background: var(--primary);
+      color: var(--text);
     }
-    body, html {
-      height: 100%;
-      background: url('https://copilot.microsoft.com/th/id/BCO.d3140e5d-89a6-4123-a9a4-da9cf0fe1e0b.png') center center / cover no-repeat;
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 2rem;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
+      flex-wrap: wrap;
+      gap: 2rem;
     }
-    .overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.7);
-      z-index: 0;
+    .gallery {
+      flex: 1;
+      min-width: 300px;
     }
-    .center-content {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      color: #fff;
-      animation: fadeIn 1.5s ease-out;
+    .gallery img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #000;
+      transition: 0.3s;
     }
-    .center-content h1 {
-      font-size: 2.8rem;
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+    .details {
+      flex: 1;
+      min-width: 300px;
+      background: var(--card);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 15px #000;
+    }
+    .details h2 {
+      font-size: 2rem;
+      color: var(--accent);
       margin-bottom: 1rem;
-      color: #f5c542;
-      text-shadow: 0 0 10px #000;
     }
-    .center-content button {
-      background: #f5c542;
+    .details p {
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .options {
+      margin-bottom: 1rem;
+    }
+    .options label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+    }
+    .options select, .options input {
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 5px;
+      border: none;
+      background: #222;
+      color: #fff;
+    }
+    .add-to-cart {
+      background: var(--accent);
       color: #111;
-      padding: 1rem 2rem;
+      padding: 1rem;
       border: none;
       border-radius: 10px;
-      font-size: 1.2rem;
+      font-size: 1rem;
       cursor: pointer;
       transition: 0.3s;
-      box-shadow: 0 0 10px #f5c54255;
+      width: 100%;
+      font-weight: bold;
     }
-    .center-content button:hover {
+    .add-to-cart:hover {
       background: #fff;
       color: #000;
       transform: scale(1.05);
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
-    }
   </style>
 </head>
 <body>
-  <div class="overlay"></div>
-  <div class="center-content">
-    <h1>پوشاک حیدرزاده</h1>
-    <button onclick="location.href='product.html'">ورود به فروشگاه</button>
+
+  <div class="container">
+    <div class="gallery">
+      <img src="https://images.unsplash.com/photo-1602810318383-4c0b2f7c9a3d" alt="محصول">
+    </div>
+    <div class="details">
+      <h2>پیراهن مردانه کلاسیک</h2>
+      <p>پارچه نخ پنبه، دوخت تمیز، مناسب استایل رسمی و نیمه‌رسمی</p>
+      <div class="options">
+        <label for="size">سایز:</label>
+        <select id="size">
+          <option>Small</option>
+          <option>Medium</option>
+          <option>Large</option>
+          <option>X-Large</option>
+        </select>
+      </div>
+      <div class="options">
+        <label for="color">رنگ:</label>
+        <select id="color">
+          <option>مشکی</option>
+          <option>سفید</option>
+          <option>سرمه‌ای</option>
+        </select>
+      </div>
+      <div class="options">
+        <label for="qty">تعداد:</label>
+        <input type="number" id="qty" value="1" min="1" />
+      </div>
+      <button class="add-to-cart" onclick="alert('افزوده شد به سبد خرید ✅')">افزودن به سبد خرید</button>
+    </div>
   </div>
+
 </body>
 </html>
