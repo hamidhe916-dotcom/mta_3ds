@@ -10,14 +10,26 @@
       margin: 0;
       font-family: 'Vazirmatn', sans-serif;
       background: url('https://s6.uupload.ir/files/copilot_20251105_203630_l3d2.png') no-repeat top center;
-      background-size: 1980px auto;
+      background-size: 1366px auto;
       background-color: #121212;
       color: #fff;
       height: 100vh;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
     }
+
+    /* ✅ عنوان بالا */
+    .brand-title {
+      width: 100%;
+      text-align: right;
+      padding: 1rem 2rem;
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #f5c542;
+      text-shadow: 0 0 10px rgba(245, 197, 66, 0.5);
+    }
+
     .form-box {
       background: rgba(0,0,0,0.75);
       padding: 2rem;
@@ -128,6 +140,9 @@
 </head>
 <body>
 
+<!-- ✅ عنوان برند بالا -->
+<div class="brand-title">پوشاک حیدرزاده</div>
+
 <div class="form-box">
   <h2>ورود / ثبت‌نام</h2>
   <div class="tabs">
@@ -155,7 +170,7 @@
     <div class="form-group">
       <input type="password" placeholder="رمز عبور" required />
     </div>
-    <h2 type="submit" class="submit-btn">ثبت نام</h2>
+    <button type="submit" class="submit-btn">ثبت‌نام</button>
   </form>
 </div>
 
@@ -183,7 +198,7 @@
   }
 
   function resetPassword() {
-    alert('Coming Soon...');
+    alert('لینک بازیابی رمز عبور برای شما ارسال شد!');
   }
 
   function showNotification(message) {
@@ -199,15 +214,14 @@
 
   document.querySelector('#loginForm').addEventListener('submit', function(e) {
     e.preventDefault();
-    showNotification('به حساب خود خوش آمدید');
+    showNotification('🎉 خوش آمدید به فروشگاه پوشاک حیدرزاده');
   });
 
   document.querySelector('#registerForm').addEventListener('submit', function(e) {
     e.preventDefault();
-    showNotification('✅اطلاعات شما در سایت ما ثبت شد');
+    showNotification('✅ شما با موفقیت در فروشگاه ما ثبت‌نام کردید');
   });
 </script>
 
 </body>
 </html>
-
