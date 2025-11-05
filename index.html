@@ -590,17 +590,22 @@
       };
     }
 
-    // ✅ دکمه حذف اطلاعات کاربر
+    // ✅ دکمه حذف اطلاعات فقط برای مدیر
     const clearBtn = document.getElementById("clear-user-data");
     if (clearBtn) {
       clearBtn.onclick = function (e) {
         e.preventDefault();
-        localStorage.removeItem("registeredUser");
-        localStorage.removeItem("isRegistered");
-        localStorage.removeItem("isLoggedIn");
-        localStorage.removeItem("cartItems");
-        alert("اطلاعات کاربر با موفقیت حذف شد ✅");
-        location.reload();
+        const savedUser = JSON.parse(localStorage.getItem("registeredUser"));
+        if (savedUser && savedUser.username === "HamidAdmin") {
+          localStorage.removeItem("registeredUser");
+          localStorage.removeItem("isRegistered");
+          localStorage.removeItem("isLoggedIn");
+          localStorage.removeItem("cartItems");
+          alert("اطلاعات کاربر با موفقیت حذف شد ✅");
+          location.reload();
+        } else {
+          alert("شما مجاز به حذف اطلاعات نیستید ❌ فقط مدیر اصلی می‌تواند این کار را انجام دهد.");
+        }
       };
     }
   };
@@ -625,8 +630,10 @@
 
 
 
+
 </body>
 </html>
+
 
 
 
