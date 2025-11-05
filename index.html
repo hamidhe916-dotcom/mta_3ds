@@ -1,622 +1,253 @@
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MTA_3DS ll طراح مدل سه بعدی ام تی ای</title>
-<style>
-  :root {
-    --primary-color: #1a1a2e;
-    --accent-color: #ffc403;
-    --secondary-text: #cccccc;
-    --card-bg: #252540;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MTA_3DS ll طراح مدل سه بعدی ام تی ای</title>
+  <style>
+    :root {
+      --primary-color: #1a1a2e;
+      --accent-color: #ffc403;
+      --secondary-text: #cccccc;
+      --card-bg: #252540;
+    }
 
-  body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(rgba(26, 26, 46, 0.85), rgba(26, 26, 46, 0.85)),
-                url('https://s6.uupload.ir/files/background_login_kq15.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    color: var(--secondary-text);
-    margin: 0;
-    padding: 0;
-  }
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(rgba(26, 26, 46, 0.85), rgba(26, 26, 46, 0.85)),
+                  url('https://s6.uupload.ir/files/background_login_kq15.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: var(--secondary-text);
+      margin: 0;
+      padding: 0;
+    }
 
-  .container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.8);
+      animation: fadeIn 0.4s ease;
+    }
 
-  .header {
-    background-color: rgba(26, 26, 46, 0.8);
-    padding: 15px 0;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(244, 245, 245, 0.1);
-  }
+    .modal-content {
+      background-color: var(--card-bg);
+      margin: 10% auto;
+      padding: 30px;
+      border: 2px solid var(--accent-color);
+      width: 90%;
+      max-width: 400px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 240, 255, 0.5);
+      animation: zoomIn 0.4s ease;
+    }
 
-  .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
 
-  .logo {
-    font-size: 1.8em;
-    font-weight: bold;
-    color: var(--accent-color);
-  }
+    @keyframes zoomIn {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
 
-  .nav-links a {
-    color: #000;
-    text-decoration: none;
-    margin-left: 20px;
-    font-size: 1em;
-    transition: color 0.3s;
-  }
+    .close-button {
+      color: #aaa;
+      float: left;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+      line-height: 1;
+    }
 
-  .nav-links a:hover {
-    color: var(--accent-color);
-  }
+    .close-button:hover {
+      color: var(--accent-color);
+    }
 
-  .hero {
-    padding: 100px 0;
-    text-align: center;
-    border-bottom: 3px solid var(--accent-color);
-  }
+    .form-group {
+      margin-bottom: 15px;
+    }
 
-  .hero h1 {
-    color: white;
-    font-size: 3em;
-    margin-bottom: 15px;
-    text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
-  }
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--accent-color);
+      font-size: 0.9em;
+    }
 
-  .hero p {
-    font-size: 1.2em;
-    color: #aaaaaa;
-    margin-bottom: 30px;
-  }
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid rgba(0, 240, 255, 0.4);
+      border-radius: 5px;
+      background-color: var(--primary-color);
+      color: white;
+      box-sizing: border-box;
+    }
 
-  .cta-button {
-    display: inline-block;
-    background-color: var(--accent-color);
-    color: var(--primary-color);
-    padding: 12px 30px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    font-size: 1.1em;
-    transition: background-color 0.3s, box-shadow 0.3s;
-  }
+    .form-group input:focus {
+      border-color: var(--accent-color);
+      outline: none;
+    }
 
-  .cta-button:hover {
-    background-color: white;
-    box-shadow: 0 0 15px var(--accent-color);
-  }
+    #success-message {
+      text-align: center;
+      color: #00ffaa;
+      font-size: 1.2em;
+      font-weight: bold;
+      display: none;
+      padding: 20px;
+      border: 2px solid #00ffaa;
+      border-radius: 8px;
+      background-color: rgba(0, 255, 170, 0.1);
+    }
 
-  .content-section {
-    padding: 60px 0;
-  }
+    #registration-form button[type="submit"] {
+      width: 100%;
+      padding: 12px;
+      background-color: var(--accent-color);
+      color: var(--primary-color);
+      border: none;
+      border-radius: 5px;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      font-weight: bold;
+    }
 
-  .section-title {
-    text-align: center;
-    font-size: 2.5em;
-    color: white;
-    margin-bottom: 40px;
-    border-bottom: 2px solid rgba(0, 240, 255, 0.2);
-    padding-bottom: 10px;
-    display: inline-block;
-    width: 100%;
-  }
-
-  .card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-  }
-
-  .game-card {
-    background-color: var(--card-bg);
-    border: 1px solid rgba(0, 240, 255, 0.2);
-    border-radius: 10px;
-    padding: 25px;
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-
-  .game-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 240, 255, 0.25);
-  }
-
-  .game-card h3 {
-    color: var(--accent-color);
-    font-size: 1.5em;
-    margin-top: 0;
-    border-bottom: 1px dashed rgba(224, 224, 224, 0.1);
-    padding-bottom: 10px;
-    margin-bottom: 15px;
-  }
-
-  .game-card p {
-    color: var(--secondary-text);
-    font-size: 0.95em;
-    line-height: 1.6;
-  }
-
-  .footer {
-    background-color: var(--primary-color);
-    border-top: 2px solid var(--accent-color);
-    padding: 30px 0;
-    text-align: center;
-    margin-top: 50px;
-  }
-
-  .footer p {
-    margin: 5px 0;
-    font-size: 0.85em;
-  }
-
-  .footer a {
-    color: var(--accent-color);
-    text-decoration: none;
-  }
-
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 10000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.8);
-    animation: fadeIn 0.4s ease;
-  }
-
-  .modal-content {
-    background-color: var(--card-bg);
-    margin: 10% auto;
-    padding: 30px;
-    border: 2px solid var(--accent-color);
-    width: 90%;
-    max-width: 400px;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0, 240, 255, 0.5);
-    animation: zoomIn 0.4s ease;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-
-  @keyframes zoomIn {
-    from { transform: scale(0.9); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-  }
-
-  .close-button {
-    color: #aaa;
-    float: left;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-    line-height: 1;
-  }
-
-  .close-button:hover,
-  .close-button:focus {
-    color: var(--accent-color);
-    text-decoration: none;
-  }
-
-  .modal-content h2 {
-    color: white;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-
-  .form-group {
-    margin-bottom: 15px;
-  }
-
-  .form-group label {
-    display: block;
-    margin-bottom: 5px;
-    color: var(--accent-color);
-    font-size: 0.9em;
-  }
-
-  .form-group input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid rgba(0, 240, 255, 0.4);
-    border-radius: 5px;
-    background-color: var(--primary-color);
-    color: white;
-    box-sizing: border-box;
-  }
-
-  .form-group input:focus {
-    border-color: var(--accent-color);
-    outline: none;
-  }
-
-  #success-message {
-    text-align: center;
-    color: #00ffaa;
-    font-size: 1.2em;
-    font-weight: bold;
-    display: none;
-    padding: 20px;
-    border: 2px solid #00ffaa;
-    border-radius: 8px;
-    background-color: rgba(0, 255, 170, 0.1);
-  }
-
-  #registration-form button[type="submit"] {
-    width: 100%;
-    padding: 12px;
-    background-color: var(--accent-color);
-    color: var(--primary-color);
-    border: none;
-    border-radius: 5px;
-    font-size: 1.1em;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    font-weight: bold;
-  }
-
-  #registration-form button[type="submit"]:hover {
-    background-color: white;
-  }
-</style>
-
-
+    #registration-form button[type="submit"]:hover {
+      background-color: white;
+    }
+  </style>
 </head>
 <body>
-        <header class="header">
-        <div class="container">
-            <nav class="navbar">
-                
- <div class="logo">MTA_<span style="color: rgb(255, 255, 255);">3Ds</span></div>
+
+  <header class="header">
+    <div class="container">
+      <nav class="navbar">
+        <div class="logo">MTA_<span style="color: white;">3Ds</span></div>
         <div class="nav-links">
-  <a href="#" class="cta-button">صفحه نخست</a>
-  <a href="#" class="cta-button">ام تی ای</a>
-  <a href="#" class="cta-button">درباره ما</a>
-  <a href="#" class="cta-button">تلگرام</a>
-</div>
-
-                </div>
-            </nav>
-            
+          <a href="#" class="cta-button">صفحه نخست</a>
+          <a href="#" class="cta-button">ام تی ای</a>
+          <a href="#" class="cta-button">درباره ما</a>
+          <a href="#" class="cta-button">تلگرام</a>
         </div>
-    </header>
-
-    <main>
-        <section class="hero">
-            <div class="container">
-                <h1> به سایت رسمی MTA_3DS خوش آمدید    </h1>
-                <p>Welcome To Site Mta_3ds Game-Designer.</p>
-                <div style="margin-top: 30px;"></div>
-                <!-- دکمه‌های وسط صفحه -->
-<a href="#" class="cta-button" id="open-modal-btn-hero">ثبت نام</a>
-<a href="#" class="cta-button open-modal-btn" data-mode="login">ورود</a>
-
-            </div>
-<!-- دکمه باز کردن پنل سمت راست -->
-<div id="side-toggle" style="position: fixed; top: 20px; right: 20px; font-size: 28px; color: var(--accent-color); cursor: pointer; z-index: 9999;">☰ </div>
-
-<!-- پنل کشویی سمت راست -->
-<div id="side-panel" style="position: fixed; top: 0; right: -250px; width: 250px; height: 100%; background-color: var(--card-bg); box-shadow: -2px 0 10px rgba(0,0,0,0.5); transition: right 0.3s ease; z-index: 9998; padding: 30px; box-sizing: border-box;">
-  <h2 style="color: var(--accent-color); font-size: 1.6em; margin-bottom: 30px; text-align: center;">پنل کاربری</h2>
-  <a href="#" style="display: block; width: 100%; background-color: var(--accent-color); color: var(--primary-color); font-weight: bold; text-align: center; padding: 12px; margin-bottom: 15px; border-radius: 6px; text-decoration: none;">پروفایل</a>
-  <a href="#" style="display: block; width: 100%; background-color: var(--accent-color); color: var(--primary-color); font-weight: bold; text-align: center; padding: 12px; margin-bottom: 15px; border-radius: 6px; text-decoration: none;">سفارشات</a>
-  <a href="#" style="display: block; width: 100%; background-color: var(--accent-color); color: var(--primary-color); font-weight: bold; text-align: center; padding: 12px; margin-bottom: 15px; border-radius: 6px; text-decoration: none;">دانلودها</a>
-  <a href="#" style="display: block; width: 100%; background-color: var(--accent-color); color: var(--primary-color); font-weight: bold; text-align: center; padding: 12px; margin-bottom: 15px; border-radius: 6px; text-decoration: none;">خروج</a>
-</div>
-
-        </section>
-
-        <section class="content-section">
-            <div class="container">
-                <h2 class="section-title">درباره ما</h2>
-                <div class="card-grid">
-                    
-                    <div class="game-card">
-                        <h3>AutoDesk 3DMax</h3>
-                        <p> تمامی مدل ها با نرم افزار Adobe 3DMax نیز ساخته میشوند  </p>
-                    </div>
-                    
-                    <div class="game-card">
-                        <h3>بهینه  مدل</h3>
-                        <p> تیم MTA_3DS مدل را در چندین مرحله تست و بهینه سازی نیز میکند </p>
-                    </div>
-                    
-                    <div class="game-card">
-                        <h3> درباره Mta_3ds</h3>
-                        <p>  MTA_3DS از ساال 1403 فعالیت خود را آغاز کرده و خداروشکر توانسته با سرور های بزرگ ام تی ای قرارداد ببندد </p>
-                    </div>
-                    
-                    <div class="game-card">
-                        <h3>پشتیبانی 24 ساعته</h3>
-                        <p>تیم پشتیبانی ما 24 ساعته در خدمت شما عزیزان میباشد</p>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 سایت توسط حمید حیدرزاده طراحی شده وحقوق برای این سایت محفوظ است.</p>
-            <p>
-                <a href="#">MTA_3DS</a> | 
-                <a href="#">Game-Designer</a>
-            </p>
-        </div>
-    </footer>
-    
-    <!-- The Modal -->
-    <div id="registrationModal" class="modal">
-      <div class="modal-content">
-        <span class="close-button">&times;</span>
-        <h2>کادر های زیر پر کنید!</h2>
-        
-        <div id="success-message">
-            <p>اطلاعات شما با ثبت شد در حال انتقال به صفحه مدل ها✅</p>
-        </div>
-
-        <form id="registration-form">
-            <div class="form-group">
-                <label for="username">نام کربری حداقل 4 کاراکتر:</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div class="form-group">
-                <label for="password">رمز عبور حداقل 8 کاراکتر:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <div class="form-group">
-                <label for="email">جیمیل:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="phone">شماره تلفن:</label>
-                <input type="tel" id="phone" name="phone" required>
-            </div>
-            <button type="submit">ثبت اطلاعات</button>
-        </form>
-      </div>
+      </nav>
     </div>
+  </header>
 
-<script>
-  window.onload = function () {
-    const modal = document.getElementById("registrationModal");
-    const span = document.querySelector(".close-button");
-    const successMessage = document.getElementById("success-message");
-    const form = document.getElementById("registration-form");
-    const openBtns = document.querySelectorAll("#open-modal-btn, #open-modal-btn-hero");
-    const loginBtn = document.querySelector('.open-modal-btn[data-mode="login"]');
-
-    const loginForm = document.createElement("form");
-    loginForm.id = "login-form";
-    loginForm.style.display = "none";
-    loginForm.innerHTML = `
-      <div class="form-group">
-        <label for="login-username">نام کاربری:</label>
-        <input type="text" id="login-username" name="login-username" required>
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>به سایت رسمی MTA_3DS خوش آمدید</h1>
+        <p>Welcome To Site Mta_3ds Game-Designer.</p>
+        <a href="#" class="cta-button" id="open-modal-btn-hero">ثبت نام</a>
+        <a href="#" class="cta-button open-modal-btn" data-mode="login">ورود</a>
       </div>
-      <div class="form-group">
-        <label for="login-password">رمز عبور:</label>
-        <input type="password" id="login-password" name="login-password" required>
+    </section>
+  </main>
+
+  <div id="registrationModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h2>کادرهای زیر را پر کنید!</h2>
+
+      <div id="success-message">
+        <p>اطلاعات شما با موفقیت ثبت شد ✅ در حال انتقال...</p>
       </div>
-      <button type="submit" style="
-        width: 100%;
-        padding: 12px;
-        background-color: var(--accent-color);
-        color: var(--primary-color);
-        border: none;
-        border-radius: 5px;
-        font-size: 1.1em;
-        cursor: pointer;
-        transition: background-color 0.3s;
-        font-weight: bold;
-      ">ورود</button>
-    `;
-    document.querySelector(".modal-content").appendChild(loginForm);
 
-    const signupBtn = document.getElementById("open-modal-btn-hero");
-    if (localStorage.getItem("registeredUser") && signupBtn) {
-      signupBtn.remove();
-    }
+      <form id="registration-form">
+        <div class="form-group">
+          <label for="username">نام کاربری:</label>
+          <input type="text" id="username" name="username" required>
+        </div>
+        <div class="form-group">
+          <label for="password">رمز عبور:</label>
+          <input type="password" id="password" name="password" required>
+        </div>
+        <div class="form-group">
+          <label for="email">ایمیل:</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">شماره تلفن:</label>
+          <input type="tel" id="phone" name="phone" required>
+        </div>
+        <button type="submit">ثبت اطلاعات</button>
+      </form>
+    </div>
+  </div>
 
-    openBtns.forEach(btn => {
-      btn.onclick = function () {
+  <script>
+    window.onload = function () {
+      const modal = document.getElementById("registrationModal");
+      const span = document.querySelector(".close-button");
+      const successMessage = document.getElementById("success-message");
+      const form = document.getElementById("registration-form");
+      const openBtns = document.querySelectorAll("#open-modal-btn, #open-modal-btn-hero");
+      const loginBtn = document.querySelector('.open-modal-btn[data-mode="login"]');
+
+      const loginForm = document.createElement("form");
+      loginForm.id = "login-form";
+      loginForm.style.display = "none";
+      loginForm.innerHTML = `
+        <div class="form-group">
+          <label for="login-username">نام کاربری:</label>
+          <input type="text" id="login-username" name="login-username" required>
+        </div>
+        <div class="form-group">
+          <label for="login-password">رمز عبور:</label>
+          <input type="password" id="login-password" name="login-password" required>
+        </div>
+        <button type="submit" style="
+          width: 100%;
+          padding: 12px;
+          background-color: var(--accent-color);
+          color: var(--primary-color);
+          border: none;
+          border-radius: 5px;
+          font-size: 1.1em;
+          cursor: pointer;
+          transition: background-color 0.3s;
+          font-weight: bold;
+        ">ورود</button>
+      `;
+      document.querySelector(".modal-content").appendChild(loginForm);
+
+      openBtns.forEach(btn => {
+        btn.onclick = function () {
+          modal.style.display = "block";
+          form.style.display = "block";
+          loginForm.style.display = "none";
+          successMessage.style.display = "none";
+          form.reset();
+        };
+      });
+
+      loginBtn.onclick = function () {
         modal.style.display = "block";
-        form.style.display = "block";
-        loginForm.style.display = "none";
+        form.style.display = "none";
+        loginForm.style.display = "block";
         successMessage.style.display = "none";
-        form.reset();
-      };
-    });
-
-    loginBtn.onclick = function () {
-      modal.style.display = "block";
-      form.style.display = "none";
-      loginForm.style.display = "block";
-      successMessage.style.display = "none";
-      loginForm.reset();
-    };
-
-    span.onclick = function () {
-      modal.style.display = "none";
-    };
-
-    window.onclick = function (event) {
-      if (event.target === modal) {
-        modal.style.display = "none";
-      }
-    };
-
-    form.onsubmit = function (event) {
-      event.preventDefault();
-
-      const userData = {
-        username: document.getElementById("username").value.trim(),
-        password: document.getElementById("password").value.trim(),
-        email: document.getElementById("email").value.trim(),
-        phone: document.getElementById("phone").value.trim()
+        loginForm.reset();
       };
 
-      localStorage.setItem("registeredUser", JSON.stringify(userData));
-
-      form.style.display = "none";
-      successMessage.innerHTML = "<p>اطلاعات شما با موفقیت ثبت شد ✅ در حال انتقال...</p>";
-      successMessage.style.display = "block";
-
-      if (signupBtn) {
-        signupBtn.remove();
-      }
-
-      setTimeout(() => {
-        document.body.style.transition = "opacity 1s ease";
-        document.body.style.opacity = "0";
+      span.onclick = function () {
+        modal.classList.add("fadeOut");
         setTimeout(() => {
-          window.location.href = "index.html";
-        }, 1000);
-      }, 1000);
-    };
-
-    loginForm.onsubmit = function (event) {
-      event.preventDefault();
-
-      const enteredUsername = document.getElementById("login-username").value.trim();
-      const enteredPassword = document.getElementById("login-password").value.trim();
-      const savedUser = JSON.parse(localStorage.getItem("registeredUser"));
-
-      if (
-        savedUser &&
-        enteredUsername === savedUser.username &&
-        enteredPassword === savedUser.password
-      ) {
-        loginForm.style.display = "none";
-        successMessage.innerHTML = "<p>ورود موفقیت‌آمیز بود ✅ در حال انتقال...</p>";
-        successMessage.style.display = "block";
-
-        setTimeout(() => {
-          document.body.style.transition = "opacity 1s ease";
-          document.body.style.opacity = "0";
-          setTimeout(() => {
-            window.location.href = "Shop.html";
-          }, 1000);
-        }, 1000);
-      } else {
-        successMessage.innerHTML = "<p style='color:red;'>نام کاربری یا رمز عبور اشتباه است!.</p>";
-        successMessage.style.display = "block";
-      }
-    };
-
-    const sideToggle = document.getElementById("side-toggle");
-    const sidePanel = document.getElementById("side-panel");
-    const panelContent = document.getElementById("panel-content");
-    const profileBtn = document.getElementById("profile-btn");
-    const ordersBtn = document.getElementById("orders-btn");
-    const downloadsBtn = document.getElementById("downloads-btn");
-    const exitBtn = document.getElementById("exit-btn");
-
-    if (sideToggle && sidePanel) {
-      sideToggle.onclick = function () {
-        sidePanel.style.right = sidePanel.style.right === "0px" ? "-250px" : "0px";
+          modal.style.display = "none";
+          modal.classList.remove("fadeOut");
+        }, 300);
       };
-    }
 
-    if (profileBtn && panelContent) {
-      profileBtn.onclick = function (e) {
-        e.preventDefault();
-        panelContent.innerHTML = `
-          <h3 style="color: var(--accent-color); margin-bottom: 10px;">اطلاعات کاربر</h3>
-          <p>نام: حمید حیدرزاده</p>
-          <p>ایمیل: hamid@example.com</p>
-          <p>شماره: 0912xxxxxxx</p>
-        `;
-      };
-    }
-
-    if (ordersBtn && panelContent) {
-      ordersBtn.onclick = function (e) {
-        e.preventDefault();
-        const cartItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
-
-        if (!cartItems || cartItems.length === 0) {
-          panelContent.innerHTML = "<p>سفارشی ندارید ❌</p>";
-        } else {
-          let html = "<h3 style='color: var(--accent-color); margin-bottom: 10px;'>سفارشات شما</h3>";
-          cartItems.forEach(item => {
-            html += `
-              <div style="margin-bottom: 15px; border-bottom: 1px dashed #888; padding-bottom: 10px;">
-                <img src="${item.imgSrc}" style="width:100%; max-height:120px; object-fit:cover; border-radius:6px; margin-bottom:5px;">
-                <p>${item.title}</p>
-              </div>
-            `;
-          });
-          panelContent.innerHTML = html;
-        }
-      };
-    }
-
-    if (downloadsBtn && panelContent) {
-      downloadsBtn.onclick = function (e) {
-        e.preventDefault();
-        panelContent.innerHTML = "<p>برای دانلود مدل‌ها به بخش خرید مراجعه کنید.</p>";
-      };
-    }
-
-    if (exitBtn) {
-      exitBtn.onclick = function (e) {
-        e.preventDefault();
-        sidePanel.style.right = "-250px";
-        panelContent.innerHTML = "";
-        window.open('', '_self').close();
-      };
-    }
-
-    const clearBtn = document.getElementById("clear-user-data");
-    if (clearBtn) {
-      clearBtn.onclick = function (e) {
-        e.preventDefault();
-        const savedUser = JSON.parse(localStorage.getItem("registeredUser"));
-        if (savedUser && savedUser.username === "HamidAdmin") {
-          localStorage.removeItem("registeredUser");
-          localStorage.removeItem("isRegistered");
-          localStorage.removeItem("isLoggedIn");
-          localStorage.removeItem("cartItems");
-          alert("اطلاعات کاربر با موفقیت حذف شد ✅");
-          location.reload();
-        } else {
-          alert("شما مجاز به حذف اطلاعات نیستید ❌ فقط مدیر اصلی می‌تواند این کار را انجام دهد.");
-        }
-      };
-    }
-  };
-</script>
-
-
-</body>
-</html>
-
-
-
-
-
-
-
-
+      window.onclick = function (event) {
+        if (event.target === modal) {
